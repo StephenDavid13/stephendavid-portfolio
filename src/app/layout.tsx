@@ -2,7 +2,6 @@ import "@/once-ui/styles/index.scss";
 import "@/once-ui/tokens/index.scss";
 
 import classNames from "classnames";
-import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import { Footer, Header, RouteGuard } from "@/components";
 import { baseURL, effects, style, font, home } from "@/app/resources";
@@ -132,7 +131,6 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           </Column>
         </ToastProvider>
       </ThemeProvider>
-      <SpeedInsights/>
     </Flex>
   );
 }

@@ -3,6 +3,8 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
+import { SpeedInsights } from '@vercel/speed-insights/next'
+ 
 import { Fade, Flex, Line, ToggleButton } from "@/once-ui/components";
 import styles from "@/components/Header.module.scss";
 
@@ -48,6 +50,7 @@ export const Header = () => {
 
   return (
     <>
+      <SpeedInsights />
       <Fade hide="s" fillWidth position="fixed" height="80" zIndex={9} />
       <Fade show="s" fillWidth position="fixed" bottom="0" to="top" height="80" zIndex={9} />
       <Flex
