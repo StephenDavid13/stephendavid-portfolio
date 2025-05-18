@@ -96,10 +96,12 @@ export const Header = () => {
                   />
                 </>
               )}
+              
               {routes["/work"] && (
                 <>
                   <ToggleButton
                     className="s-flex-hide"
+                    style={{ display: 'none' }}
                     prefixIcon="grid"
                     href="/work"
                     label={work.label}
@@ -107,6 +109,7 @@ export const Header = () => {
                   />
                   <ToggleButton
                     className="s-flex-show"
+                    style={{ display: 'none' }}
                     prefixIcon="grid"
                     href="/work"
                     selected={pathname.startsWith("/work")}
@@ -117,6 +120,7 @@ export const Header = () => {
                 <>
                   <ToggleButton
                     className="s-flex-hide"
+                    style={{ display: 'none' }}
                     prefixIcon="book"
                     href="/blog"
                     label={blog.label}
@@ -124,6 +128,7 @@ export const Header = () => {
                   />
                   <ToggleButton
                     className="s-flex-show"
+                    style={{ display: 'none' }}
                     prefixIcon="book"
                     href="/blog"
                     selected={pathname.startsWith("/blog")}
@@ -134,6 +139,7 @@ export const Header = () => {
                 <>
                   <ToggleButton
                     className="s-flex-hide"
+                    style={{ display: 'none' }}
                     prefixIcon="gallery"
                     href="/gallery"
                     label={gallery.label}
@@ -141,6 +147,7 @@ export const Header = () => {
                   />
                   <ToggleButton
                     className="s-flex-show"
+                    style={{ display: 'none' }}
                     prefixIcon="gallery"
                     href="/gallery"
                     selected={pathname.startsWith("/gallery")}

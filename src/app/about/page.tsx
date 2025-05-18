@@ -200,8 +200,11 @@ export default function About() {
                         {experience.timeframe}
                       </Text>
                     </Flex>
-                    <Text variant="body-default-s" onBackground="brand-weak" marginBottom="m">
+                    <Text variant="body-default-s" onBackground="brand-weak" marginBottom="xs">
                       {experience.role}
+                    </Text>
+                    <Text variant="body-default-m" marginBottom="m">
+                      {experience.description}
                     </Text>
                     <Column as="ul" gap="16">
                       {experience.achievements.map((achievement: JSX.Element, index: number) => (
@@ -218,6 +221,7 @@ export default function About() {
                       <Flex fillWidth paddingTop="m" paddingLeft="40" wrap>
                         {experience.images.map((image, index) => (
                           <Flex
+                            // biome-ignore lint/suspicious/noArrayIndexKey: need it for the key
                             key={index}
                             border="neutral-medium"
                             radius="m"
@@ -278,6 +282,7 @@ export default function About() {
               </Heading>
               <Column fillWidth gap="l">
                 {about.technical.skills.map((skill, index) => (
+                  // biome-ignore lint/suspicious/noArrayIndexKey: need it for the key
                   <Column key={`${skill}-${index}`} fillWidth gap="4">
                     <Text variant="heading-strong-l">{skill.title}</Text>
                     <Text variant="body-default-m" onBackground="neutral-weak">
@@ -287,6 +292,7 @@ export default function About() {
                       <Flex fillWidth paddingTop="m" gap="12" wrap>
                         {skill.images.map((image, index) => (
                           <Flex
+                            // biome-ignore lint/suspicious/noArrayIndexKey: need it for the key
                             key={index}
                             border="neutral-medium"
                             radius="m"

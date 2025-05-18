@@ -8,7 +8,7 @@ import { Footer, Header, RouteGuard } from "@/components";
 import { baseURL, effects, style, font, home } from "@/app/resources";
 
 import { Background, Column, Flex, ThemeProvider, ToastProvider } from "@/once-ui/components";
-import { opacity, SpacingToken } from "@/once-ui/types";
+import type { opacity, SpacingToken } from "@/once-ui/types";
 import { Meta } from "@/once-ui/modules";
 
 export async function generateMetadata() {
@@ -49,6 +49,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
     >
       <head>
         <script
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
@@ -113,7 +114,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
                 color: effects.lines.color,
               }}
             />
-            <Flex fillWidth minHeight="16" hide="s"></Flex>
+            <Flex fillWidth minHeight="16" hide="s" />
             <Header />
             <Flex
               zIndex={0}

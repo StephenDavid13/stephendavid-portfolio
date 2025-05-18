@@ -23,15 +23,15 @@ export const Footer = () => {
         vertical="center"
       >
         <Text variant="body-default-s" onBackground="neutral-strong">
-          <Text onBackground="neutral-weak">© {currentYear} /</Text>
+          <Text onBackground="neutral-weak">© {currentYear} </Text>
           <Text paddingX="4">{person.name}</Text>
           <Text onBackground="neutral-weak">
             {/* Usage of this template requires attribution. Please don't remove the link to Once UI. */}
-            / Build your portfolio with{" "}
+            - Build your websites with{" "}
             <SmartLink
-              href="https://once-ui.com/templates/magic-portfolio"
+              href="mailto:stephen.david.06@gmail.com"
             >
-              Once UI
+              me
             </SmartLink>
           </Text>
         </Text>
@@ -51,7 +51,7 @@ export const Footer = () => {
           )}
         </Flex>
       </Flex>
-      <Flex height="80" show="s"></Flex>
+      <Flex height="80" show="s" />
     </Flex>
   );
 };

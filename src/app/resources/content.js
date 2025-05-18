@@ -1,16 +1,17 @@
 import { Logo } from "@/once-ui/components";
+import React from "react";
 
 const person = {
-  firstName: "Selene",
-  lastName: "Yu",
+  firstName: "Stephen",
+  lastName: "David",
   get name() {
     return `${this.firstName} ${this.lastName}`;
   },
-  role: "Design Engineer",
-  avatar: "/images/avatar.jpg",
-  email: "example@gmail.com",
-  location: "Asia/Jakarta", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-  languages: ["English", "Bahasa"], // optional: Leave the array empty if you don't want to display languages
+  role: "Full-Stack Developer",
+  avatar: "/images/avatar.png",
+  email: "stephen.david.06@gmail.com",
+  location: "Australia/Melbourne", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
+  languages: ["English", "Filipino"], // optional: Leave the array empty if you don't want to display languages
 };
 
 const newsletter = {
@@ -30,17 +31,12 @@ const social = [
   {
     name: "GitHub",
     icon: "github",
-    link: "https://github.com/once-ui-system/nextjs-starter",
+    link: "https://github.com/StephenDavid13",
   },
   {
     name: "LinkedIn",
     icon: "linkedin",
-    link: "https://www.linkedin.com/company/once-ui/",
-  },
-  {
-    name: "X",
-    icon: "x",
-    link: "",
+    link: "https://www.linkedin.com/in/stephendavid13/",
   },
   {
     name: "Email",
@@ -55,16 +51,15 @@ const home = {
   label: "Home",
   title: `${person.name}'s Portfolio`,
   description: `Portfolio website showcasing my work as a ${person.role}`,
-  headline: <>Building bridges between design and code</>,
+  headline: <>I'm Stephen David</>,
   featured: {
     display: true,
-    title: <>Recent project: <strong className="ml-4">Once UI</strong></>,
-    href: "/work/building-once-ui-a-customizable-design-system",
+    title: <>Check my GitHub: <strong className="ml-4">StephenDavid13</strong></>,
+    href: "https://github.com/StephenDavid13",
   },
   subline: (
     <>
-      I'm Selene, a design engineer at <Logo icon={false} style={{ display: "inline-flex", top: "0.25em", marginLeft: "-0.25em" }}/>, where I craft intuitive
-      <br /> user experiences. After hours, I build my own projects.
+      I am a full-stack developer creating responsive and elegant websites for multiple businesses. (insert more)
     </>
   ),
 };
@@ -83,16 +78,14 @@ const about = {
   },
   calendar: {
     display: true,
-    link: "https://cal.com",
+    link: `mailto:${person.email}`,
   },
   intro: {
     display: true,
     title: "Introduction",
     description: (
       <>
-        Selene is a Jakarta-based design engineer with a passion for transforming complex challenges
-        into simple, elegant design solutions. Her work spans digital interfaces, interactive
-        experiences, and the convergence of design and technology.
+        Stephen is a Melbourne-based full-stack developer... (more to come)
       </>
     ),
   },
@@ -101,42 +94,95 @@ const about = {
     title: "Work Experience",
     experiences: [
       {
-        company: "FLY",
-        timeframe: "2022 - Present",
-        role: "Senior Design Engineer",
+        company: "Point Hacks Ltd",
+        timeframe: "May 2023 - Present",
+        role: "Full-Stack Developer",
+        description: "Optimising and developing Point Hacks and Australian Frequent Flyer websites and community platforms.",
         achievements: [
-          <>
-            Redesigned the UI/UX for the FLY platform, resulting in a 20% increase in user
-            engagement and 30% faster load times.
-          </>,
-          <>
-            Spearheaded the integration of AI tools into design workflows, enabling designers to
-            iterate 50% faster.
-          </>,
+          <React.Fragment key="ph-ui">
+            Develops front-end design according to design requirements
+          </React.Fragment>,
+          <React.Fragment key="ph-ui">
+            Develops back-end logic using TypeScript, Vanilla Javascript, Vue.js, and Node.js
+          </React.Fragment>,
+          <React.Fragment key="ph-ui">
+            Builds the Point Hacks Concierge web application using Remix.run
+          </React.Fragment>,
+          <React.Fragment key="ph-ui">
+            Synchronises data to the website using GraphQL from Hygraph and PocketBase
+          </React.Fragment>,
+          <React.Fragment key="ph-ui">
+            Collaborates in an agile environment alongside stakeholders, delivering solutions and meet deadlines
+          </React.Fragment>,
         ],
-        images: [
-          // optional: leave the array empty if you don't want to display images
-          {
-            src: "/images/projects/project-01/cover-01.jpg",
-            alt: "Once UI Project",
-            width: 16,
-            height: 9,
-          },
-        ],
+        images: [],
       },
       {
-        company: "Creativ3",
-        timeframe: "2018 - 2022",
-        role: "Lead Designer",
+        company: "The Refinery Ltd",
+        timeframe: "July 2021 - May 2023",
+        role: "Senior Full-Stack Web Developer",
+        description: "Led a small group of developers and managed the full-stack development of websites for a digital marketing agency.",
         achievements: [
-          <>
+          <React.Fragment key="creativ3-design">
             Developed a design system that unified the brand across multiple platforms, improving
             design consistency by 40%.
-          </>,
-          <>
+          </React.Fragment>,
+          <React.Fragment key="creativ3-product">
             Led a cross-functional team to launch a new product line, contributing to a 15% increase
             in overall company revenue.
-          </>,
+          </React.Fragment>,
+        ],
+        images: [],
+      },
+      {
+        company: "Shuk Engineering Distributors Ltd",
+        timeframe: "June 2017 - June 2021",
+        role: "System Administrator / Business Analyst / Full-Stack Developer",
+        description: "Managed all IT operations, developed client-facing products, and maintained all IT systems for the company.",
+        achievements: [
+          <React.Fragment key="creativ3-design">
+            Developed a design system that unified the brand across multiple platforms, improving
+            design consistency by 40%.
+          </React.Fragment>,
+          <React.Fragment key="creativ3-product">
+            Led a cross-functional team to launch a new product line, contributing to a 15% increase
+            in overall company revenue.
+          </React.Fragment>,
+        ],
+        images: [],
+      },
+      {
+        company: "Kiwise Digital Agency",
+        timeframe: "June 2015 - June 2017",
+        role: "Full-Stack Developer / Office Administrator",
+        description: "Managed a diverse range of client projects, including website development, mobile applications, and game creation, as the sole developer for a start-up digital marketing agency.",
+        achievements: [
+          <React.Fragment key="creativ3-design">
+            Developed a design system that unified the brand across multiple platforms, improving
+            design consistency by 40%.
+          </React.Fragment>,
+          <React.Fragment key="creativ3-product">
+            Led a cross-functional team to launch a new product line, contributing to a 15% increase
+            in overall company revenue.
+          </React.Fragment>,
+        ],
+        images: [],
+      },
+      {
+        company: "Accordo Group Limited",
+        timeframe: "Decemeber 2014 - February 2015",
+        role: "Software Engineer Intern",
+        description: "Supported software development and testing for the company.",
+        achievements: [
+          <React.Fragment key="creativ3-design">
+            Assisted in designing and developing high-value business features
+          </React.Fragment>,
+          <React.Fragment key="creativ3-product">
+            Created and executed test cases for feature development
+          </React.Fragment>,
+          <React.Fragment key="creativ3-product">
+            Designed and developed databases for efficient data management
+          </React.Fragment>,
         ],
         images: [],
       },
@@ -147,17 +193,13 @@ const about = {
     title: "Studies",
     institutions: [
       {
-        name: "University of Jakarta",
-        description: <>Studied software engineering.</>,
-      },
-      {
-        name: "Build the Future",
-        description: <>Studied online marketing and personal branding.</>,
+        name: "University of Auckland",
+        description: <>Bachelor of Science, Major in Computer Science</>,
       },
     ],
   },
   technical: {
-    display: true, // set to false to hide this section
+    display: false, // set to false to hide this section
     title: "Technical skills",
     skills: [
       {
