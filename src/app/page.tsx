@@ -58,7 +58,7 @@ export default function Home() {
             <Button
               id="about"
               data-border="rounded"
-              href={about.path}
+              href="/files/Stephen_Lawrence_David-CV.pdf"
               variant="secondary"
               size="m"
               arrowIcon
@@ -71,7 +71,7 @@ export default function Home() {
                     size="m"
                   />
                 )}
-                {about.title}
+                Get my CV
               </Flex>
             </Button>
           </RevealFx>
