@@ -55,25 +55,38 @@ export default function Home() {
             </Text>
           </RevealFx>
           <RevealFx paddingTop="12" delay={0.4} horizontal="start" paddingLeft="12">
-            <Button
-              id="about"
-              data-border="rounded"
-              href="/files/Stephen_Lawrence_David-CV.pdf"
-              variant="secondary"
-              size="m"
-              arrowIcon
-            >
-              <Flex gap="8" vertical="center">
-                {about.avatar.display && (
-                  <Avatar
-                    style={{ marginLeft: "-0.75rem", marginRight: "0.25rem" }}
-                    src={person.avatar}
-                    size="m"
-                  />
-                )}
-                Get my CV
-              </Flex>
-            </Button>
+            <Flex gap="20" vertical="center">
+              <Button
+                id="cv"
+                data-border="rounded"
+                href="/files/Stephen_Lawrence_David-CV.pdf"
+                variant="primary"
+                size="m"
+              >
+                <Flex gap="8" vertical="center">
+                  Get my CV
+                </Flex>
+              </Button>
+              <Button
+                id="about"
+                data-border="rounded"
+                href="/about"
+                variant="secondary"
+                size="m"
+                arrowIcon
+              >
+                <Flex gap="8" vertical="center">
+                  {about.avatar.display && (
+                    <Avatar
+                      style={{ marginLeft: "-0.75rem", marginRight: "0.25rem" }}
+                      src={person.avatar}
+                      size="m"
+                    />
+                  )}
+                  More about me
+                </Flex>
+              </Button>
+            </Flex>
           </RevealFx>
         </Column>
       </Column>
