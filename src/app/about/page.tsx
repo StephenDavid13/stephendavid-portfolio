@@ -103,16 +103,6 @@ export default function About() {
                 ))}
               </Flex>
             )}
-          </Column>
-        )}
-        <Column className={styles.blockAlign} flex={9} maxWidth={40}>
-          <Column
-            id={about.intro.title}
-            fillWidth
-            minHeight="160"
-            vertical="center"
-            marginBottom="32"
-          >
             {about.calendar.display && (
               <Flex
                 fitWidth
@@ -138,6 +128,16 @@ export default function About() {
                 />
               </Flex>
             )}
+          </Column>
+        )}
+        <Column className={styles.blockAlign} flex={9} maxWidth={40}>
+          <Column
+            id={about.intro.title}
+            fillWidth
+            minHeight="160"
+            vertical="center"
+            marginBottom="32"
+          >
             <Heading className={styles.textAlign} variant="display-strong-xl">
               {person.name}
             </Heading>
