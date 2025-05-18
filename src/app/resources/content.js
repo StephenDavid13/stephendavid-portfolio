@@ -76,7 +76,7 @@ const about = {
   avatar: {
     display: true,
   },
-  calendar: {
+  mail: {
     display: true,
     link: `mailto:${person.email}`,
   },
@@ -99,19 +99,19 @@ const about = {
         role: "Full-Stack Developer",
         description: "Optimising and developing Point Hacks and Australian Frequent Flyer websites and community platforms.",
         achievements: [
-          <React.Fragment key="ph-ui">
+          <React.Fragment key="pointhacks-dev-front-end">
             Develops front-end design according to design requirements
           </React.Fragment>,
-          <React.Fragment key="ph-ui">
+          <React.Fragment key="pointhacks-dev-back-end">
             Develops back-end logic using TypeScript, Vanilla Javascript, Vue.js, and Node.js
           </React.Fragment>,
-          <React.Fragment key="ph-ui">
+          <React.Fragment key="pointhacks-dev-remix">
             Builds the Point Hacks Concierge web application using Remix.run
           </React.Fragment>,
-          <React.Fragment key="ph-ui">
+          <React.Fragment key="pointhacks-dev-graphql">
             Synchronises data to the website using GraphQL from Hygraph and PocketBase
           </React.Fragment>,
-          <React.Fragment key="ph-ui">
+          <React.Fragment key="pointhacks-collaboration">
             Collaborates in an agile environment alongside stakeholders, delivering solutions and meet deadlines
           </React.Fragment>,
         ],
@@ -123,13 +123,20 @@ const about = {
         role: "Senior Full-Stack Web Developer",
         description: "Led a small group of developers and managed the full-stack development of websites for a digital marketing agency.",
         achievements: [
-          <React.Fragment key="creativ3-design">
-            Developed a design system that unified the brand across multiple platforms, improving
-            design consistency by 40%.
+          <React.Fragment key="refinery-dev-fullstack">
+            Executed full end-to-end UI / UX website development
           </React.Fragment>,
-          <React.Fragment key="creativ3-product">
-            Led a cross-functional team to launch a new product line, contributing to a 15% increase
-            in overall company revenue.
+          <React.Fragment key="refinery-design">
+            Developed and implemented all the websites designed by our designers
+          </React.Fragment>,
+          <React.Fragment key="refinery-dev-back-end">
+            Created back-end logic and functionality using React.js and jQuery
+          </React.Fragment>,
+          <React.Fragment key="refinery-dev-database">
+            Designed database structures for data storage and retrieval
+          </React.Fragment>,
+          <React.Fragment key="refinery-admin">
+            Administered WHM, cPanel, domains, and SSL certificates
           </React.Fragment>,
         ],
         images: [],
@@ -140,13 +147,32 @@ const about = {
         role: "System Administrator / Business Analyst / Full-Stack Developer",
         description: "Managed all IT operations, developed client-facing products, and maintained all IT systems for the company.",
         achievements: [
-          <React.Fragment key="creativ3-design">
-            Developed a design system that unified the brand across multiple platforms, improving
-            design consistency by 40%.
+          <React.Fragment key="shuk-dev-database">
+            Wrote SQL scripts using MySQL to create business information
           </React.Fragment>,
-          <React.Fragment key="creativ3-product">
-            Led a cross-functional team to launch a new product line, contributing to a 15% increase
-            in overall company revenue.
+          <React.Fragment key="shuk-reports">
+            Created and collated reports for stakeholder and managerial consumption
+          </React.Fragment>,
+          <React.Fragment key="shuk-crm">
+            Administered relational databases, including security, CRM, and product inventory
+          </React.Fragment>,
+          <React.Fragment key="shuk-forecasts">
+            Created forecasts for company product purchases
+          </React.Fragment>,
+          <React.Fragment key="shuk-analysis">
+            Analysed and corrected data inconsistencies in the system
+          </React.Fragment>,
+          <React.Fragment key="shuk-dev-fullstack">
+            Developed and designed the company's website and its backend logic
+          </React.Fragment>,
+          <React.Fragment key="shuk-dev-structure">
+            Built the database structure for data storage and retrieval
+          </React.Fragment>,
+          <React.Fragment key="shuk-admin">
+            Managed all IT systems including Cin7, Office 365, and Email Exchange
+          </React.Fragment>,
+          <React.Fragment key="shuk-admin-cpanel">
+            Managed the company's WHM and cPanel
           </React.Fragment>,
         ],
         images: [],
@@ -157,13 +183,23 @@ const about = {
         role: "Full-Stack Developer / Office Administrator",
         description: "Managed a diverse range of client projects, including website development, mobile applications, and game creation, as the sole developer for a start-up digital marketing agency.",
         achievements: [
-          <React.Fragment key="creativ3-design">
-            Developed a design system that unified the brand across multiple platforms, improving
-            design consistency by 40%.
+          <React.Fragment key="kiwise-dev-fullstack">
+            Developed end-to-end UI/UX solutions, including customer interactions
           </React.Fragment>,
-          <React.Fragment key="creativ3-product">
-            Led a cross-functional team to launch a new product line, contributing to a 15% increase
-            in overall company revenue.
+          <React.Fragment key="kiwise-dev-website">
+            Built and designed WordPress websites
+          </React.Fragment>,
+          <React.Fragment key="kiwise-dev-game">
+            Designed and developed 2D games and apps
+          </React.Fragment>,
+          <React.Fragment key="kiwise-dev-logic">
+            Implemented all the backend that handles all the logic from all the above
+          </React.Fragment>,
+          <React.Fragment key="kiwise-dev-database">
+            Managed and designed the database structure for data storage and retrieval
+          </React.Fragment>,
+          <React.Fragment key="kiwise-dev-admin">
+            Administered WHM, cPanel, domains, and SSL certificates
           </React.Fragment>,
         ],
         images: [],
@@ -174,13 +210,13 @@ const about = {
         role: "Software Engineer Intern",
         description: "Supported software development and testing for the company.",
         achievements: [
-          <React.Fragment key="creativ3-design">
+          <React.Fragment key="accordo-deisgn">
             Assisted in designing and developing high-value business features
           </React.Fragment>,
-          <React.Fragment key="creativ3-product">
+          <React.Fragment key="accordo-dev-testing">
             Created and executed test cases for feature development
           </React.Fragment>,
-          <React.Fragment key="creativ3-product">
+          <React.Fragment key="accordo-dev-database">
             Designed and developed databases for efficient data management
           </React.Fragment>,
         ],

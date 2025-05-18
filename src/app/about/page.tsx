@@ -103,7 +103,7 @@ export default function About() {
                 ))}
               </Flex>
             )}
-            {about.calendar.display && (
+            {about.mail.display && (
               <Flex
                 fitWidth
                 border="brand-alpha-medium"
@@ -118,10 +118,10 @@ export default function About() {
                 marginBottom="m"
                 vertical="center"
               >
-                <Icon paddingLeft="12" name="calendar" onBackground="brand-weak" />
-                <Flex paddingX="8">Schedule a call</Flex>
+                <Icon paddingLeft="12" name="email" onBackground="brand-weak" />
+                <Flex paddingX="8">Email me</Flex>
                 <IconButton
-                  href={about.calendar.link}
+                  href={about.mail.link}
                   data-border="rounded"
                   variant="secondary"
                   icon="chevronRight"
