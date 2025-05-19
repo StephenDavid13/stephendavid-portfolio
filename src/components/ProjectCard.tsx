@@ -39,13 +39,13 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           alt: title,
         }))}
       />
-      <Flex
+      <Column
         mobileDirection="column"
         fillWidth
         paddingX="s"
         paddingTop="12"
         paddingBottom="24"
-        gap="l"
+        gap="s"
       >
         {title && (
           <Flex flex={5}>
@@ -84,7 +84,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             </Flex>
           </Column>
         )}
-      </Flex>
+      </Column>
     </Column>
   );
 };

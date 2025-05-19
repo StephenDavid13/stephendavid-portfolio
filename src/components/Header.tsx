@@ -104,7 +104,6 @@ export const Header = () => {
                 <>
                   <ToggleButton
                     className="s-flex-hide"
-                    style={{ display: 'none !important' }}
                     prefixIcon="grid"
                     href="/work"
                     label={work.label}
@@ -112,7 +111,6 @@ export const Header = () => {
                   />
                   <ToggleButton
                     className="s-flex-show"
-                    style={{ display: 'none !important' }}
                     prefixIcon="grid"
                     href="/work"
                     selected={pathname.startsWith("/work")}
@@ -123,7 +121,6 @@ export const Header = () => {
                 <>
                   <ToggleButton
                     className="s-flex-hide"
-                    style={{ display: 'none !important' }}
                     prefixIcon="book"
                     href="/blog"
                     label={blog.label}
@@ -131,7 +128,6 @@ export const Header = () => {
                   />
                   <ToggleButton
                     className="s-flex-show"
-                    style={{ display: 'none !important' }}
                     prefixIcon="book"
                     href="/blog"
                     selected={pathname.startsWith("/blog")}
@@ -142,7 +138,6 @@ export const Header = () => {
                 <>
                   <ToggleButton
                     className="s-flex-hide"
-                    style={{ display: 'none !important' }}
                     prefixIcon="gallery"
                     href="/gallery"
                     label={gallery.label}
@@ -150,7 +145,6 @@ export const Header = () => {
                   />
                   <ToggleButton
                     className="s-flex-show"
-                    style={{ display: 'none !important' }}
                     prefixIcon="gallery"
                     href="/gallery"
                     selected={pathname.startsWith("/gallery")}

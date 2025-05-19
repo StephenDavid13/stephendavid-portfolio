@@ -5,8 +5,8 @@ const routes = {
   "/": true,
   "/about": true,
   "/work": true,
-  "/blog": true,
-  "/gallery": true,
+  "/blog": false,
+  "/gallery": false,
 };
 
 // Enable password protection on selected routes
@@ -47,7 +47,7 @@ const style = {
   border: "playful", // rounded | playful | conservative
   surface: "translucent", // filled | translucent
   transition: "all", // all | micro | macro
-  scaling: "90" // 90 | 95 | 100 | 105 | 110
+  scaling: "95" // 90 | 95 | 100 | 105 | 110
 };
 
 const effects = {
