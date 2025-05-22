@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Heading, Flex, Text, Button, Avatar, RevealFx, Column, Badge, Row, IconButton } from "@/once-ui/components";
+import { Heading, Flex, Text, Button, Avatar, RevealFx, Column, Badge, Row, IconButton, SmartImage } from "@/once-ui/components";
 import { Projects } from "@/components/work/Projects";
 
 import { baseURL, routes } from "@/app/resources";
@@ -37,12 +37,19 @@ export default function Home() {
       />
       <Column maxWidth="s">
         {home.featured && (
-        <RevealFx fillWidth horizontal="start" paddingTop="16" paddingBottom="32" paddingLeft="12">
-          <Badge background="brand-alpha-weak" paddingX="12" paddingY="4" onBackground="neutral-strong" textVariant="label-default-s" arrow={false}
-            href={home.featured.href}>
-            <Row paddingY="2">{home.featured.title}</Row>
-          </Badge>
-        </RevealFx>
+          <RevealFx fillWidth horizontal="start" paddingTop="16" paddingBottom="32" paddingLeft="12">
+            <Badge 
+              background="brand-alpha-weak" 
+              paddingX="12" 
+              paddingY="4" 
+              onBackground="neutral-strong" 
+              textVariant="label-default-s" 
+              arrow={false}
+              href={home.featured.href}
+            >
+              <Row paddingY="2">{home.featured.title}</Row>
+            </Badge>
+          </RevealFx>
         )}
         <RevealFx translateY="4" fillWidth horizontal="start" paddingBottom="16">
           <Heading wrap="balance" variant="display-strong-l">
@@ -53,7 +60,6 @@ export default function Home() {
           <Text wrap="balance" onBackground="neutral-weak" variant="heading-default-xl">
             {home.subline}
           </Text>
-          
         </RevealFx>
         <RevealFx translateY="8" delay={0.2} fillWidth horizontal="start" paddingBottom="20">
           <Flex gap="8">
@@ -96,7 +102,9 @@ export default function Home() {
         </RevealFx>
       </Column>
       <Column maxWidth="l" paddingY="24" gap="xl">
-        <Projects range={[1, 3]} />
+        <RevealFx paddingTop="12" delay={0.4} horizontal="start" paddingLeft="12">
+          <Projects range={[1, 3]} />
+        </RevealFx>
       </Column>
     </Column>
   );

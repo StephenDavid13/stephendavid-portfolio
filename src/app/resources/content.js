@@ -59,7 +59,7 @@ const home = {
   },
   subline: (
     <>
-      I am a full-stack developer creating responsive and elegant websites for multiple businesses. (insert more)
+      I am a full-stack developer crafting scalable web solutions with solid engineering and thoughtful responsive design.
     </>
   ),
 };
@@ -85,7 +85,7 @@ const about = {
     title: "Introduction",
     description: (
       <>
-        Stephen is a Melbourne-based full-stack developer... (more to come)
+        I am a full-stack developer with 10+ years of experience creating responsive, scalable websites and applications. I build everything with solid engineering with thoughtful design with my work, ranging from custom CMS themes to full web apps.
       </>
     ),
   },
@@ -235,19 +235,57 @@ const about = {
     ],
   },
   technical: {
-    display: false, // set to false to hide this section
+    display: true, // set to false to hide this section
     title: "Technical skills",
     skills: [
       {
-        title: "Figma",
-        description: <>Able to prototype in Figma with Once UI with unnatural speed.</>,
-        // optional: leave the array empty if you don't want to display images
+        title: "HTML & CSS",
+        description: <>Semantic, accessible HTML and responsive layouts with modern CSS.</>,
         images: [],
       },
       {
-        title: "Next.js",
-        description: <>Building next gen apps with Next.js + Once UI + Supabase.</>,
-        // optional: leave the array empty if you don't want to display images
+        title: "Tailwind CSS & SCSS",
+        description: <>Rapid UI development with Tailwind CSS and scalable styles using SCSS for custom theming.</>,
+        images: [],
+      },
+      {
+        title: "JavaScript & TypeScript",
+        description: <>Strong front-end logic with JavaScript and robust type safety with TypeScript.</>,
+        images: [],
+      },
+      {
+        title: "Vue & jQuery",
+        description: <>Experience building reactive UIs with Vue and maintaining legacy features with jQuery.</>,
+        images: [],
+      },
+      {
+        title: "React Ecosystem",
+        description: <>Developing modern web apps using React.js, Remix.run, React Native, and Next.js.</>,
+        images: [],
+      },
+      {
+        title: "Node.js",
+        description: <>Back-end functionality and API development with Node.js and Express.</>,
+        images: [],
+      },
+      {
+        title: "REST & GraphQL APIs",
+        description: <>Comfortable working with both REST and GraphQL APIs for dynamic data handling.</>,
+        images: [],
+      },
+      {
+        title: "MySQL",
+        description: <>Relational database design, queries, and optimization with MySQL.</>,
+        images: [],
+      },
+      {
+        title: "WordPress & Silverstripe",
+        description: <>Custom theme and plugin development in WordPress and CMS configuration in Silverstripe.</>,
+        images: [],
+      },
+      {
+        title: "Server Tools",
+        description: <>Experienced with server management tools like cPanel, WHM, and phpMyAdmin.</>,
         images: [],
       },
     ],
