@@ -22,13 +22,7 @@ export function Projects({ range }: ProjectsProps) {
       <Heading variant="heading-default-l">
         Projects
       </Heading>
-      <Flex 
-        fillWidth 
-        gap="m" 
-        marginBottom="32"
-        direction="row"
-        className="flex-col md:flex-row"
-      >
+      <Flex fillWidth gap="m" marginBottom="32" mobileDirection="column">
         {displayedProjects.map((post, index) => (
           <ProjectCard
             priority={index < 2}
