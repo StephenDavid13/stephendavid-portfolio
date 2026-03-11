@@ -29,7 +29,7 @@ export const Footer = () => {
             {/* Usage of this template requires attribution. Please don't remove the link to Once UI. */}
             - Build your websites with{" "}
             <SmartLink
-              href="mailto:stephen.david.06@gmail.com"
+              href="mailto:hello@stephendavid.dev"
             >
               me
             </SmartLink>
