@@ -1,5 +1,5 @@
 import { getPosts } from "@/app/utils/utils";
-import { Column, Flex, Heading } from "@/once-ui/components";
+import { Column, Grid, Heading } from "@/once-ui/components";
 import { ProjectCard } from "@/components";
 
 interface ProjectsProps {
@@ -22,7 +22,7 @@ export function Projects({ range }: ProjectsProps) {
       <Heading variant="heading-default-l">
         Projects
       </Heading>
-      <Flex fillWidth gap="m" marginBottom="32" mobileDirection="column">
+      <Grid fillWidth columns="3" tabletColumns="3" mobileColumns="1" gap="m" marginBottom="32">
         {displayedProjects.map((post, index) => (
           <ProjectCard
             priority={index < 2}
@@ -36,7 +36,7 @@ export function Projects({ range }: ProjectsProps) {
             link={post.metadata.link || ""}
           />
         ))}
-      </Flex>
+      </Grid>
     </Column>
     
   );
