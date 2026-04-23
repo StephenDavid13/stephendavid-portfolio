@@ -67,8 +67,8 @@
   text-transform: uppercase;
   margin: 0 0 var(--static-space-8);
   padding-bottom: var(--static-space-6);
-  border-bottom: 1px solid #333;
-  color: #111;
+  border-bottom: 1px solid #0e7490 !important;
+  color: #0e7490 !important;
   break-after: avoid;
   page-break-after: avoid;
 }
@@ -121,7 +121,7 @@
 
 .experienceRole strong {
   font-weight: 700;
-  color: #0e7490;
+  color: #0e7490 !important;
 }
 
 .experienceRole .pipe {
