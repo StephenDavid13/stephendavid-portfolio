@@ -1,0 +1,46 @@
+@page {
+  size: A4;
+  margin: 20mm 22mm;
+}
+
+@media print {
+  html,
+  body {
+    background: #ffffff !important;
+    color-scheme: light;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Re-map once-ui's dark-theme tokens to readable light-theme values for print
+     so any once-ui component that sneaks in renders on the white page. */
+  [data-theme="dark"] {
+    --page-background: #ffffff;
+    --surface-background: #ffffff;
+    --neutral-background-strong: #ffffff;
+    --neutral-background-medium: #ffffff;
+    --neutral-background-weak: #ffffff;
+    --neutral-on-background-strong: #111111;
+    --neutral-on-background-medium: #333333;
+    --neutral-on-background-weak: #555555;
+    --neutral-alpha-weak: rgba(0, 0, 0, 0.08);
+    --neutral-alpha-medium: rgba(0, 0, 0, 0.16);
+    --neutral-alpha-strong: rgba(0, 0, 0, 0.32);
+  }
+
+  /* Hide every body-level element except the CV wrapper. This catches the
+     site header, footer, fixed fade overlays, background effects, and the
+     main content flex in one go — no dependence on CSS-module class hashing. */
+  body > *:not([data-cv-print-root]) {
+    display: none !important;
+  }
+
+  /* Keep inline links styled inline; browsers will render them clickable in the PDF.
+     Target :link / :visited explicitly so the print engine's default blue loses. */
+  [data-cv-print-root] a,
+  [data-cv-print-root] a:link,
+  [data-cv-print-root] a:visited {
+    color: #1e3a8a !important;
+    text-decoration: none !important;
+  }
+}

@@ -1,12 +1,18 @@
-import React from "react";
-
-import { Heading, Flex, Text, Button, Avatar, RevealFx, Column, Badge, Row, IconButton, SmartImage } from "@/once-ui/components";
+import {
+  Badge,
+  Button,
+  Column,
+  Flex,
+  Heading,
+  IconButton,
+  RevealFx,
+  Row,
+  Text,
+} from "@/once-ui/components";
 import { Projects } from "@/components/work/Projects";
+import { DownloadCVButton } from "@/components/DownloadCVButton";
 
-import { baseURL, routes } from "@/app/resources";
-import { home, about, person, newsletter, social } from "@/app/resources/content";
-import { Mailchimp } from "@/components";
-import { Posts } from "@/components/blog/Posts";
+import { baseURL, home, about, identity, social } from "@/app/resources";
 import { Meta, Schema } from "@/once-ui/modules";
 import styles from "./page.module.scss";
 
@@ -14,7 +20,7 @@ export async function generateMetadata() {
   return Meta.generate({
     title: home.title,
     description: home.description,
-    baseURL: baseURL,
+    baseURL,
     path: home.path,
   });
 }
@@ -30,27 +36,30 @@ export default function Home() {
         description={home.description}
         image={`${baseURL}/og?title=${encodeURIComponent(home.title)}`}
         author={{
-          name: person.name,
+          name: identity.name,
           url: `${baseURL}${about.path}`,
-          image: `${baseURL}${person.avatar}`,
         }}
       />
       <Column maxWidth="s">
-        {home.featured && (
-          <RevealFx fillWidth horizontal="start" paddingTop="16" paddingBottom="32" paddingLeft="12">
-            <Badge 
-              background="brand-alpha-weak" 
-              paddingX="12" 
-              paddingY="4" 
-              onBackground="neutral-strong" 
-              textVariant="label-default-s" 
-              arrow={false}
-              href={home.featured.href}
-            >
-              <Row paddingY="2">{home.featured.title}</Row>
-            </Badge>
-          </RevealFx>
-        )}
+        <RevealFx
+          fillWidth
+          horizontal="start"
+          paddingTop="16"
+          paddingBottom="32"
+          paddingLeft="12"
+        >
+          <Badge
+            background="brand-alpha-weak"
+            paddingX="12"
+            paddingY="4"
+            onBackground="neutral-strong"
+            textVariant="label-default-s"
+            arrow={false}
+            href="/about"
+          >
+            <Row paddingY="2">Check out my CV</Row>
+          </Badge>
+        </RevealFx>
         <RevealFx translateY="4" fillWidth horizontal="start" paddingBottom="16">
           <Heading wrap="balance" variant="display-strong-l">
             {home.headline}
@@ -80,30 +89,23 @@ export default function Home() {
           </Flex>
         </RevealFx>
         <RevealFx paddingTop="12" delay={0.4} horizontal="start" paddingLeft="12">
-          <Button
-            id="about"
-            data-border="rounded"
-            href="/about"
-            variant="secondary"
-            size="m"
-            arrowIcon
-          >
-            <Flex gap="8" vertical="center">
-              {about.avatar.display && (
-                <Avatar
-                  style={{ marginLeft: "-0.75rem", marginRight: "0.25rem" }}
-                  src={person.avatar}
-                  size="m"
-                />
-              )}
+          <Flex gap="8" wrap>
+            <DownloadCVButton size="m" variant="primary" />
+            <Button
+              href="/about"
+              data-border="rounded"
+              variant="secondary"
+              size="m"
+              arrowIcon
+            >
               More about me
-            </Flex>
-          </Button>
+            </Button>
+          </Flex>
         </RevealFx>
       </Column>
       <Column maxWidth="l" paddingY="24" gap="xl">
         <RevealFx paddingTop="12" delay={0.4} horizontal="start" paddingLeft="12">
-          <Projects range={[1, 3]} />
+          <Projects />
         </RevealFx>
       </Column>
     </Column>

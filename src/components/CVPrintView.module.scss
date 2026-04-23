@@ -1,0 +1,187 @@
+/* Hidden on screen — only visible when printing. The About page embeds this
+   component so the "Download CV" button produces the same PDF that the
+   dedicated /cv page used to. */
+.cvRoot {
+  display: none;
+  width: 100%;
+}
+
+.page {
+  background: #ffffff;
+  color: #111111;
+  padding: 0;
+}
+
+/* Header */
+
+.header {
+  margin-bottom: var(--static-space-20);
+  text-align: center;
+}
+
+.name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.subline {
+  font-size: 0.8rem;
+  margin: 0.25rem 0 0;
+  color: #333;
+}
+
+.contactLine {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--static-space-8);
+  margin: 0.4rem 0 0;
+  font-size: 0.75rem;
+  color: #555;
+}
+
+.contactLine a,
+.contactLine a:link,
+.contactLine a:visited {
+  color: #1e3a8a !important;
+  text-decoration: none;
+}
+
+.pipe {
+  color: #888;
+}
+
+/* Sections */
+
+.section {
+  margin-top: var(--static-space-20);
+}
+
+.sectionHeading {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin: 0 0 var(--static-space-8);
+  padding-bottom: var(--static-space-6);
+  border-bottom: 1px solid #333;
+  color: #111;
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+.paragraph {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: #222;
+}
+
+/* Skills */
+
+.skillList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--static-space-4);
+}
+
+.skillRow {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: #222;
+}
+
+.skillGroup {
+  font-weight: 700;
+  color: #111;
+}
+
+/* Experience */
+
+.experienceBlock {
+  break-inside: avoid;
+  page-break-inside: avoid;
+  margin-top: var(--static-space-16);
+}
+
+.experienceBlock:first-of-type {
+  margin-top: var(--static-space-8);
+}
+
+.experienceRole {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: #111;
+}
+
+.experienceRole strong {
+  font-weight: 700;
+  color: #0e7490;
+}
+
+.experienceRole .pipe {
+  margin: 0 0.35rem;
+}
+
+.experienceMeta {
+  margin: 0.15rem 0 0;
+  font-size: 0.75rem;
+  font-style: italic;
+  color: #555;
+}
+
+.experienceSummary {
+  margin: 0.2rem 0 0;
+  font-size: 0.78rem;
+  font-style: italic;
+  color: #555;
+}
+
+.achievements {
+  margin: var(--static-space-4) 0 0 var(--static-space-20);
+  padding: 0;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: #222;
+}
+
+.achievements li {
+  margin-bottom: var(--static-space-2);
+}
+
+.achievements li::marker {
+  color: #555;
+}
+
+/* Education */
+
+.educationBlock {
+  margin-top: var(--static-space-10);
+}
+
+.educationDegree {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.educationInstitution {
+  margin: 0.15rem 0 0;
+  font-size: 0.78rem;
+  font-style: italic;
+  color: #555;
+}
+
+/* Print — reveal the CV and let it flow */
+
+@media print {
+  .cvRoot {
+    display: block !important;
+  }
+}

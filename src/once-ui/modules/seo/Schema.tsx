@@ -1,6 +1,6 @@
 import React from "react";
 import Script from "next/script";
-import { social } from "@/app/resources/content";
+import { social } from "@/app/resources";
 
 export interface SchemaProps {
   as: "website" | "article" | "blog" | "blogPosting" | "techArticle" | "webPage" | "organization";

@@ -1,22 +1,70 @@
-// IMPORTANT: Replace with your own domain address - it's used for SEO in meta tags and schema
-const baseURL = "https://demo.magic-portfolio.com";
+import { Geist, Geist_Mono } from "next/font/google";
+
+const baseURL = "https://stephendavid.dev";
 
 const routes = {
   "/": true,
   "/about": true,
   "/work": true,
-  "/blog": false,
-  "/gallery": false,
 };
 
-// Enable password protection on selected routes
-// Set password in the .env file, refer to .env.example
-const protectedRoutes = {
-  "/work/automate-design-handovers-with-a-figma-to-code-pipeline": true,
+const identity = {
+  firstName: "Stephen",
+  lastName: "David",
+  name: "Stephen David",
+  role: "Full-Stack Web Developer",
+  location: "Melbourne, VIC",
+  timezone: "Australia/Melbourne",
+  email: "hello@stephendavid.dev",
+  emailAlt: "stephen.david.06@gmail.com",
+  phone: "+61 477 274 345",
+  website: "stephendavid.dev",
 };
 
-import { Geist } from "next/font/google";
-import { Geist_Mono } from "next/font/google";
+const social = [
+  {
+    name: "GitHub",
+    icon: "github",
+    link: "https://github.com/StephenDavid13",
+  },
+  {
+    name: "LinkedIn",
+    icon: "linkedin",
+    link: "https://www.linkedin.com/in/stephendavid13/",
+  },
+  {
+    name: "Email",
+    icon: "email",
+    link: `mailto:${identity.email}`,
+  },
+];
+
+const home = {
+  path: "/",
+  image: "/images/og/home.jpg",
+  label: "Home",
+  title: `${identity.name} — ${identity.role}`,
+  description: `Portfolio showcasing work by ${identity.name}, ${identity.role} based in ${identity.location}.`,
+  headline: "Stephen David",
+  subline:
+    "Full-stack developer crafting scalable web solutions with solid engineering and thoughtful responsive design.",
+  cta: {
+    label: "View CV",
+    href: "/about",
+  },
+};
+
+const about = {
+  path: "/about",
+  label: "About",
+};
+
+const work = {
+  path: "/work",
+  label: "Work",
+  title: `Projects – ${identity.name}`,
+  description: `Design and dev projects by ${identity.name}.`,
+};
 
 const primaryFont = Geist({
   variable: "--font-primary",
@@ -38,25 +86,20 @@ const font = {
 };
 
 const style = {
-  theme: "dark", // theme is not necessary when using ThemeProvider (default)
-  neutral: "gray", // sand | gray | slate
-  brand: "aqua", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan
-  accent: "cyan", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan
-  solid: "contrast", // color | contrast
-  solidStyle: "flat", // flat | plastic
-  border: "playful", // rounded | playful | conservative
-  surface: "translucent", // filled | translucent
-  transition: "all", // all | micro | macro
-  scaling: "95" // 90 | 95 | 100 | 105 | 110
+  theme: "dark",
+  neutral: "gray",
+  brand: "aqua",
+  accent: "cyan",
+  solid: "contrast",
+  solidStyle: "flat",
+  border: "playful",
+  surface: "translucent",
+  transition: "all",
+  scaling: "95",
 };
 
 const effects = {
-  mask: {
-    cursor: false,
-    x: 50,
-    y: 0,
-    radius: 100,
-  },
+  mask: { cursor: false, x: 50, y: 0, radius: 100 },
   gradient: {
     display: false,
     opacity: 100,
@@ -94,51 +137,19 @@ const effects = {
 const display = {
   location: true,
   time: true,
-  themeSwitcher: true
+  themeSwitcher: true,
 };
 
-const mailchimp = {
-  action: "https://url/subscribe/post?parameters",
-  effects: {
-    mask: {
-      cursor: true,
-      x: 50,
-      y: 0,
-      radius: 100,
-    },
-    gradient: {
-      display: true,
-      opacity: 90,
-      x: 50,
-      y: 0,
-      width: 50,
-      height: 50,
-      tilt: 0,
-      colorStart: "accent-background-strong",
-      colorEnd: "static-transparent",
-    },
-    dots: {
-      display: true,
-      opacity: 20,
-      size: "2",
-      color: "brand-on-background-weak",
-    },
-    grid: {
-      display: false,
-      opacity: 100,
-      color: "neutral-alpha-medium",
-      width: "0.25rem",
-      height: "0.25rem",
-    },
-    lines: {
-      display: false,
-      opacity: 100,
-      color: "neutral-alpha-medium",
-      size: "16",
-      thickness: 1,
-      angle: 90,
-    },
-  },
+export {
+  baseURL,
+  routes,
+  identity,
+  social,
+  home,
+  about,
+  work,
+  font,
+  style,
+  effects,
+  display,
 };
-
-export { routes, protectedRoutes, effects, style, display, mailchimp, baseURL, font };

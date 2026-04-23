@@ -3,7 +3,9 @@ import "@/once-ui/tokens/index.scss";
 
 import classNames from "classnames";
 
-import { Footer, Header, RouteGuard } from "@/components";
+import { Footer, Header } from "@/components";
+import { CVPrintView } from "@/components/CVPrintView";
+import { loadAbout } from "@/app/utils/loadAbout";
 import { baseURL, effects, style, font, home } from "@/app/resources";
 
 import { Background, Column, Flex, ThemeProvider, ToastProvider } from "@/once-ui/components";
@@ -25,6 +27,8 @@ interface RootLayoutProps {
 }
 
 export default async function RootLayout({ children }: RootLayoutProps) {
+  const { frontmatter } = loadAbout();
+
   return (
     <Flex
       suppressHydrationWarning
@@ -124,10 +128,11 @@ export default async function RootLayout({ children }: RootLayoutProps) {
               flex={1}
             >
               <Flex horizontal="center" fillWidth minHeight="0">
-                <RouteGuard>{children}</RouteGuard>
+                {children}
               </Flex>
             </Flex>
             <Footer />
+            <CVPrintView frontmatter={frontmatter} />
           </Column>
         </ToastProvider>
       </ThemeProvider>

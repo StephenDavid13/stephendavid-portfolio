@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -v \"^$\")",
+      "Bash(xargs -I {} basename {})",
+      "Bash(grep -E \"^\\(api|og|blog|gallery|work\\)$\")",
+      "Bash(echo \"exit=$?\")",
+      "Bash(npx --no biome check src/app/cv src/app/about/page.tsx src/app/page.tsx src/components/Header.tsx src/components/Footer.tsx src/app/utils/loadAbout.ts src/app/resources/config.js)",
+      "Bash(curl -sf http://localhost:3000/cv -o /dev/null)",
+      "Bash(curl -sf -o /tmp/cv.html -w \"%{http_code}\\\\n\" http://localhost:3002/cv)",
+      "Bash(curl -sf -o /tmp/about.html -w \"%{http_code}\\\\n\" http://localhost:3002/about)",
+      "Bash(curl -sf -o /tmp/home.html -w \"%{http_code}\\\\n\" http://localhost:3002/)",
+      "Bash(curl -sf -o /tmp/work.html -w \"%{http_code}\\\\n\" http://localhost:3002/work)",
+      "Bash(pkill -f \"next dev\")",
+      "Bash(curl -sf -o /tmp/check.html -w \"%{http_code}\" http://localhost:3000/)",
+      "Bash(curl -sf http://localhost:3000/ -o /tmp/home.html -w \"%{http_code}\\\\n\")",
+      "Bash(curl -sf http://localhost:3000/about -o /tmp/about.html -w \"%{http_code}\\\\n\")",
+      "Bash(curl -sf http://localhost:3000/cv -o /tmp/cv.html -w \"%{http_code}\\\\n\")",
+      "Bash(curl -sf http://localhost:3000/about)",
+      "Bash(curl -sf http://localhost:3000/cv)",
+      "Bash(curl -sf http://localhost:3000/work)",
+      "Bash(python3 -c ' *)",
+      "Bash(curl -sf -o /dev/null http://localhost:3000/)",
+      "Bash(curl -sf http://localhost:3000/ -o /tmp/home-ssr.html)"
+    ]
+  }
+}

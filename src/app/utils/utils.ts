@@ -9,6 +9,11 @@ type Team = {
   linkedIn: string;
 };
 
+export type Technology = {
+  name: string;
+  role: string;
+};
+
 type Metadata = {
   title: string;
   publishedAt: string;
@@ -18,6 +23,7 @@ type Metadata = {
   tag?: string;
   team: Team[];
   link?: string;
+  technologies?: Technology[];
 };
 
 import { notFound } from 'next/navigation';
@@ -47,6 +53,7 @@ function readMDXFile(filePath: string) {
     tag: data.tag || [],
     team: data.team || [],
     link: data.link || "",
+    technologies: data.technologies || [],
   };
 
   return { metadata, content };

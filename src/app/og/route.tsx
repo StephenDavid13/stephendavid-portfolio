@@ -1,18 +1,11 @@
 import { ImageResponse } from "next/og";
-import { baseURL } from "@/app/resources";
-import { person } from "@/app/resources/content";
+import { identity } from "@/app/resources";
 
 export const runtime = "edge";
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
   const title = url.searchParams.get("title") || "Portfolio";
-  /*
-  const font = fetch(new URL("../../../public/fonts/Inter.ttf", import.meta.url)).then((res) =>
-    res.arrayBuffer(),
-  );
-  const fontData = await font;
-  */
 
   return new ImageResponse(
     <div
@@ -49,65 +42,37 @@ export async function GET(request: Request) {
         <div
           style={{
             display: "flex",
-            alignItems: "center",
-            gap: "5rem",
+            flexDirection: "column",
+            gap: "0.75rem",
           }}
         >
-          <img
-            src={baseURL + person.avatar}
+          <span
             style={{
-              width: "12rem",
-              height: "12rem",
-              objectFit: "cover",
-              borderRadius: "100%",
-            }}
-
-            alt={`${person.name} avatar`}
-          />
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "0.75rem",
+              fontSize: "4.5rem",
+              lineHeight: "4.5rem",
+              whiteSpace: "pre-wrap",
+              textWrap: "balance",
             }}
           >
-            <span
-              style={{
-                fontSize: "4.5rem",
-                lineHeight: "4.5rem",
-                whiteSpace: "pre-wrap",
-                textWrap: "balance",
-              }}
-            >
-              {person.name}
-            </span>
-            <span
-              style={{
-                fontSize: "2.5rem",
-                lineHeight: "2.5rem",
-                whiteSpace: "pre-wrap",
-                textWrap: "balance",
-                opacity: "0.6",
-              }}
-            >
-              {person.role}
-            </span>
-          </div>
+            {identity.name}
+          </span>
+          <span
+            style={{
+              fontSize: "2.5rem",
+              lineHeight: "2.5rem",
+              whiteSpace: "pre-wrap",
+              textWrap: "balance",
+              opacity: "0.6",
+            }}
+          >
+            {identity.role}
+          </span>
         </div>
       </div>
     </div>,
     {
       width: 1280,
       height: 720,
-      /*
-      fonts: [
-        {
-          name: "Inter",
-          data: fontData,
-          style: "normal",
-        },
-      ],
-      */
     },
   );
 }

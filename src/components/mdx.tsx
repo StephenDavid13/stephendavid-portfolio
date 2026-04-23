@@ -1,8 +1,7 @@
 import { MDXRemote, MDXRemoteProps } from "next-mdx-remote/rsc";
 import React, { ReactNode } from "react";
-import dynamic from "next/dynamic";
 
-import { 
+import {
   Heading,
   HeadingLink,
   SmartImage,
@@ -157,18 +156,8 @@ const components = {
   Text,
   CodeBlock,
   InlineCode,
-  Accordion: dynamic(() => import("@/once-ui/components").then(mod => mod.Accordion)),
-  AccordionGroup: dynamic(() => import("@/once-ui/components").then(mod => mod.AccordionGroup)),
-  Table: dynamic(() => import("@/once-ui/components").then(mod => mod.Table)),
-  Feedback: dynamic(() => import("@/once-ui/components").then(mod => mod.Feedback)),
-  Button: dynamic(() => import("@/once-ui/components").then(mod => mod.Button)),
-  Card: dynamic(() => import("@/once-ui/components").then(mod => mod.Card)),
-  Grid: dynamic(() => import("@/once-ui/components").then(mod => mod.Grid)),
-  Row: dynamic(() => import("@/once-ui/components").then(mod => mod.Row)),
-  Column: dynamic(() => import("@/once-ui/components").then(mod => mod.Column)),
-  Icon: dynamic(() => import("@/once-ui/components").then(mod => mod.Icon)),
-  SmartImage: dynamic(() => import("@/once-ui/components").then(mod => mod.SmartImage)),
-  SmartLink: dynamic(() => import("@/once-ui/components").then(mod => mod.SmartLink)),
+  SmartImage,
+  SmartLink,
 };
 
 type CustomMDXProps = MDXRemoteProps & {

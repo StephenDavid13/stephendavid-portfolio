@@ -1,9 +1,8 @@
 import { notFound } from "next/navigation";
 import { CustomMDX } from "@/components/mdx";
 import { getPosts } from "@/app/utils/utils";
-import { AvatarGroup, Button, Column, Flex, Heading, SmartImage, Text } from "@/once-ui/components";
-import { baseURL } from "@/app/resources";
-import { about, person, work } from "@/app/resources/content";
+import { AvatarGroup, Button, Column, Flex, Heading, SmartImage, Tag, Text } from "@/once-ui/components";
+import { baseURL, identity, about, work } from "@/app/resources";
 import { formatDate } from "@/app/utils/formatDate";
 import ScrollToHash from "@/components/ScrollToHash";
 import type { Metadata } from "next";
@@ -67,9 +66,8 @@ export default async function Project({
         dateModified={post.metadata.publishedAt}
         image={`${baseURL}/og?title=${encodeURIComponent(post.metadata.title)}`}
         author={{
-          name: person.name,
+          name: identity.name,
           url: `${baseURL}${about.path}`,
-          image: `${baseURL}${person.avatar}`,
         }}
       />
       <Column maxWidth="xs" gap="16">
@@ -95,6 +93,35 @@ export default async function Project({
           </Text>
         </Flex>
         <CustomMDX source={post.content} />
+        {post.metadata.technologies && post.metadata.technologies.length > 0 && (
+          <Column gap="s" marginTop="xl">
+            <Heading as="h2" variant="heading-strong-l">
+              Technologies
+            </Heading>
+            <Flex wrap gap="8" paddingBottom="s">
+              {post.metadata.technologies.map((tech) => (
+                <Tag key={tech.name} size="l">
+                  {tech.name}
+                </Tag>
+              ))}
+            </Flex>
+            <Column as="ul" gap="8" paddingLeft="16">
+              {post.metadata.technologies.map((tech) => (
+                <Text
+                  as="li"
+                  key={`${tech.name}-role`}
+                  variant="body-default-s"
+                  onBackground="neutral-weak"
+                >
+                  <Text as="span" variant="body-strong-s" onBackground="neutral-strong">
+                    {tech.name}
+                  </Text>
+                  {` — ${tech.role}`}
+                </Text>
+              ))}
+            </Column>
+          </Column>
+        )}
       </Column>
       <ScrollToHash />
     </Column>
