@@ -73,7 +73,7 @@ references: "Available on request."
 ## Adding a new project
 
 1. Create `src/app/work/projects/<slug>.mdx` (the filename becomes the URL, e.g. `src/app/work/projects/new-site.mdx` → `/work/new-site`).
-2. Drop the cover image into `public/images/projects/<folder>/cover-image.png`.
+2. Drop the cover image into `public/images/projects/<folder>/cover-image.png`, then run `npm run compress-covers` — it will convert to WebP, delete the PNG, and update any MDX references (see the [Images section](#images) for details).
 3. Copy this template and fill it in:
 
 ```yaml
@@ -82,7 +82,7 @@ title: "Project Name"
 publishedAt: "2026-04-19"                # YYYY-MM-DD — required for sorting
 summary: "One-line card description."
 images:
-  - "/images/projects/<folder>/cover-image.png"
+  - "/images/projects/<folder>/cover-image.webp"
 link: "https://liveurl.com/"             # Optional: external "View project" link
 technologies:
   - name: "Next.js"
@@ -104,13 +104,18 @@ technologies:
 
 ## Updating the CV / Downloading the PDF
 
-There is **no separate PDF file to maintain**. The PDF is generated in the browser from `/cv`.
+There is **no separate PDF file to maintain**. The PDF is generated in the browser from the "Download CV" button on `/about` (or the same button on the home page).
 
 1. Edit `src/content/about.mdx` (frontmatter — skills, experience, education, summary).
-2. Visit `/cv` in the browser.
-3. Click **Download PDF** → the native print dialog opens → choose "Save as PDF" → the output matches exactly what's on screen.
+2. Visit `/about` (or `/`) in the browser.
+3. Click **Download CV** → the native print dialog opens → choose "Save as PDF" → the PDF uses the layout in `src/components/CVPrintView.tsx`, not what you see on screen.
 
-Print styles (A4, no header/footer, black on white) are in `src/app/cv/cv.print.scss`. Usually no need to touch this.
+Print layout + styles:
+- Markup → `src/components/CVPrintView.tsx`
+- Screen + print typography → `src/components/CVPrintView.module.scss`
+- Global print rules (A4 page size, hide site chrome, force light background) → `src/components/CVPrintView.print.scss`
+
+The `CVPrintView` component is hidden on screen (`display: none`) and only becomes visible under `@media print`. Any page in the app can trigger the download because the component is rendered once at the root in `src/app/layout.tsx`.
 
 ---
 
@@ -147,9 +152,40 @@ Adding a new social link:
 
 ## Images
 
-- Project covers → `public/images/projects/<project-folder>/cover-image.png` (aspect 16:9 works best).
+- Project covers → `public/images/projects/<project-folder>/cover-image.webp` (aspect 16:9 works best, kept as WebP to keep the repo small).
 - OG image (social card for the home page) → `public/images/og/home.jpg` (1280×720).
 - Everything in `public/` is served at the root (`/images/...` in code = `public/images/...` on disk).
+
+### Compressing / converting project covers to WebP
+
+The project covers used to be 3–7 MB PNG screenshots, which blocked `git push` with HTTP 400 errors and bloated the repo. They live as WebP now. Whenever you add a new cover PNG, run:
+
+```bash
+npm run compress-covers
+```
+
+That runs [`scripts/compress-covers.sh`](scripts/compress-covers.sh), which does three things in one pass:
+
+1. Converts every `public/images/projects/*/cover-image.png` to `.webp` (quality 82, max 1600 px on the long edge).
+2. Deletes the original `.png` file.
+3. Updates any `src/app/work/projects/*.mdx` frontmatter references from `cover-image.png` → `cover-image.webp`.
+
+Expect ~95–98% size reduction on screenshots.
+
+**One-time setup** — install the encoder if you don't have it:
+
+```bash
+brew install webp
+```
+
+**Workflow for a new project cover**: drop the PNG at `public/images/projects/<slug>/cover-image.png`, run `npm run compress-covers`, reference the `.webp` path in the MDX:
+
+```yaml
+images:
+  - "/images/projects/<slug>/cover-image.webp"
+```
+
+**Quality tuning**: `-q 82` is the default inside the script (visually lossless for screenshots). If you want to tune it, edit `scripts/compress-covers.sh`. Drop to `70` for smaller files, raise to `90+` only if you see banding.
 
 ---
 
@@ -209,7 +245,7 @@ If you genuinely need to change something in `src/once-ui/`, fork the component 
 ## Quick sanity checklist before committing
 
 - [ ] `npm run build` completes with no red errors.
-- [ ] Visited `/`, `/about`, `/cv`, `/work`, and at least one `/work/<slug>` page.
+- [ ] Visited `/`, `/about`, `/work`, and at least one `/work/<slug>` page. Clicked **Download CV** and skimmed the resulting PDF.
 - [ ] New projects have a valid `publishedAt` date.
 - [ ] No placeholder copy left (e.g. "lorem ipsum", "TODO", an empty `summary: ""` on a new field).
 - [ ] If changed identity fields, the Home, About, CV, and Footer still show what you expected.
@@ -220,6 +256,6 @@ If you genuinely need to change something in `src/once-ui/`, fork the component 
 
 1. **MDX YAML is strict.** A missing colon, a rogue tab, or an unquoted string with special characters will produce a build error with an unhelpful line number. If a rebuild fails right after editing MDX, the frontmatter is almost always the culprit.
 2. **Client components don't see filesystem reads.** The About/CV pages load `about.mdx` on the server. Don't move that read into a `"use client"` component — it'll crash at runtime.
-3. **The CV "PDF" is a print render.** If the on-screen `/cv` looks right but the PDF output looks weird, edit `src/app/cv/cv.print.scss`, not the page component.
-4. **Route visibility is a tri-state.** `routes["/cv"] = true` shows it in the nav. Remove it from `routes` entirely to 404 the route. Setting to `false` only hides the nav link — the route still responds.
+3. **The CV "PDF" is a print render.** There's no `/cv` route — the CV markup lives in `src/components/CVPrintView.tsx` and is only shown when printing. If the PDF looks wrong, edit `CVPrintView.module.scss` or `CVPrintView.print.scss`, not the `/about` page.
+4. **Route visibility is a tri-state.** `routes["/about"] = true` shows it in the nav. Remove it from `routes` entirely to 404 the route. Setting to `false` only hides the nav link — the route still responds.
 5. **The `name` in frontmatter and JSX must match.** Section IDs in the TOC (`Professional Experience`, `Core Skills`) are matched by string. If you rename a heading on the About page, update the matching `id` in the MDX `sections` array too or the TOC link will go nowhere.
