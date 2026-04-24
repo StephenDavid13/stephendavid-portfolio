@@ -4,7 +4,6 @@
   "scripts": {
     "dev": "next dev",
     "export": "next export",
-    "prebuild": "npm run build:cv",
     "build": "next build",
     "build:cv": "node scripts/generate-cv-pdf.mjs",
     "start": "next start",
