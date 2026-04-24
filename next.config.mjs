@@ -14,7 +14,7 @@ const nextConfig = {
     silenceDeprecations: ["legacy-js-api"],
   },
   experimental: {
-    optimizePackageImports: ["react-icons", "@/once-ui/components"],
+    optimizePackageImports: ["react-icons"],
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === "production" ? { exclude: ["error", "warn"] } : false,
