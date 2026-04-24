@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useState, useEffect, forwardRef } from "react";
+import React, { forwardRef, CSSProperties } from "react";
 import { SpacingToken } from "../types";
 import styles from "./RevealFx.module.scss";
 import { Flex } from ".";
@@ -15,6 +13,17 @@ interface RevealFxProps extends React.ComponentProps<typeof Flex> {
   style?: React.CSSProperties;
   className?: string;
 }
+
+const speedToDuration = (speed: RevealFxProps["speed"]) => {
+  switch (speed) {
+    case "fast":
+      return "0.6s";
+    case "slow":
+      return "1.4s";
+    default:
+      return "1s";
+  }
+};
 
 const RevealFx = forwardRef<HTMLDivElement, RevealFxProps>(
   (
@@ -31,49 +40,16 @@ const RevealFx = forwardRef<HTMLDivElement, RevealFxProps>(
     },
     ref,
   ) => {
-    const [isRevealed, setIsRevealed] = useState(revealedByDefault);
+    let stateClass = "";
+    if (trigger === false) {
+      stateClass = styles.hidden;
+    } else if (trigger === true || revealedByDefault) {
+      stateClass = styles.revealed;
+    }
 
-    useEffect(() => {
-      const timer = setTimeout(() => {
-        setIsRevealed(true);
-      }, delay * 1000);
-
-      return () => clearTimeout(timer);
-    }, [delay]);
-
-    useEffect(() => {
-      if (trigger !== undefined) {
-        setIsRevealed(trigger);
-      }
-    }, [trigger]);
-
-    const getSpeedDuration = () => {
-      switch (speed) {
-        case "fast":
-          return "1s";
-        case "medium":
-          return "2s";
-        case "slow":
-          return "3s";
-        default:
-          return "2s";
-      }
-    };
-
-    const getTranslateYValue = () => {
-      if (typeof translateY === "number") {
-        return `${translateY}rem`;
-      } else if (typeof translateY === "string") {
-        return `var(--static-space-${translateY})`;
-      }
-      return undefined;
-    };
-
-    const translateValue = getTranslateYValue();
-
-    const revealStyle: React.CSSProperties = {
-      transitionDuration: getSpeedDuration(),
-      transform: isRevealed ? "translateY(0)" : `translateY(${translateValue})`,
+    const revealStyle: CSSProperties = {
+      ["--reveal-duration" as string]: speedToDuration(speed),
+      ["--reveal-delay" as string]: `${delay}s`,
       ...style,
     };
 
@@ -83,7 +59,7 @@ const RevealFx = forwardRef<HTMLDivElement, RevealFxProps>(
         horizontal="center"
         ref={ref}
         style={revealStyle}
-        className={`${styles.revealFx} ${isRevealed ? styles.revealed : styles.hidden} ${className || ""}`}
+        className={`${styles.revealFx} ${stateClass} ${className || ""}`}
         {...rest}
       >
         {children}

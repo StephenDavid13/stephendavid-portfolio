@@ -96,6 +96,7 @@ const Background = forwardRef<HTMLDivElement, BackgroundProps>(
     }, [forwardedRef]);
 
     useEffect(() => {
+      if (!mask.cursor) return;
       const handleMouseMove = (event: MouseEvent) => {
         if (backgroundRef.current) {
           const rect = backgroundRef.current.getBoundingClientRect();
@@ -106,12 +107,12 @@ const Background = forwardRef<HTMLDivElement, BackgroundProps>(
         }
       };
 
-      document.addEventListener("mousemove", handleMouseMove);
+      document.addEventListener("mousemove", handleMouseMove, { passive: true });
 
       return () => {
         document.removeEventListener("mousemove", handleMouseMove);
       };
-    }, []);
+    }, [mask.cursor]);
 
     useEffect(() => {
       let animationFrameId: number;
