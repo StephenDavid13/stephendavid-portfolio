@@ -103,9 +103,20 @@ export default function Home() {
           </Flex>
         </RevealFx>
       </Column>
-      <Column maxWidth="l" paddingY="24" gap="xl">
+      <Column maxWidth="l" paddingY="24" gap="8">
         <RevealFx paddingTop="12" delay={0.4} horizontal="start" paddingLeft="12">
-          <Projects />
+          <Projects range={[1, 3]} />
+        </RevealFx>
+        <RevealFx delay={0.5} horizontal="center">
+          <Button
+            href="/work"
+            variant="secondary"
+            size="m"
+            data-border="rounded"
+            suffixIcon="arrowRight"
+          >
+            View all projects
+          </Button>
         </RevealFx>
       </Column>
     </Column>

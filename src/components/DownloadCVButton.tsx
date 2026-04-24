@@ -1,7 +1,6 @@
 "use client";
 
-import { Button, IconButton } from "@/once-ui/components";
-import { identity } from "@/app/resources";
+import { Button } from "@/once-ui/components";
 
 interface DownloadCVButtonProps {
   size?: "s" | "m" | "l";
@@ -9,41 +8,31 @@ interface DownloadCVButtonProps {
   label?: string;
 }
 
+const CV_PATH = "/stephen-david-cv.pdf";
+const CV_FILENAME = "stephen-david-cv.pdf";
+
 export function DownloadCVButton({
   size = "s",
   variant = "primary",
   label = "Download CV",
-}: DownloadCVButtonProps) {
-  const handlePrint = () => {
-    const previousTitle = document.title;
-    document.title = `CV - ${identity.name}`;
-    const restore = () => {
-      document.title = previousTitle;
-      window.removeEventListener("afterprint", restore);
-    };
-    window.addEventListener("afterprint", restore);
-    window.print();
+}: Readonly<DownloadCVButtonProps>) {
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = CV_PATH;
+    link.download = CV_FILENAME;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
   };
 
   return (
-    <>
-      <Button
-        className="s-flex-hide"
-        onClick={handlePrint}
-        prefixIcon="document"
-        label={label}
-        size={size}
-        variant={variant}
-        data-border="rounded"
-      />
-      <IconButton
-        className="s-flex-show"
-        onClick={handlePrint}
-        icon="document"
-        size="l"
-        variant={variant}
-        tooltip={label}
-      />
-    </>
+    <Button
+      onClick={handleDownload}
+      prefixIcon="document"
+      label={label}
+      size={size}
+      variant={variant}
+      data-border="rounded"
+    />
   );
 }

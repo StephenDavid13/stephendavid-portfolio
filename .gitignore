@@ -31,6 +31,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# generated CV (rebuilt via `npm run build:cv` / prebuild)
+/public/stephen-david-cv.pdf
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

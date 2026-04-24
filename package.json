@@ -4,7 +4,9 @@
   "scripts": {
     "dev": "next dev",
     "export": "next export",
+    "prebuild": "npm run build:cv",
     "build": "next build",
+    "build:cv": "node scripts/generate-cv-pdf.mjs",
     "start": "next start",
     "lint": "next lint",
     "compress-covers": "bash scripts/compress-covers.sh"
@@ -38,6 +40,7 @@
     "eslint": "^9.25.0",
     "postcss-custom-media": "^10.0.8",
     "postcss-flexbugs-fixes": "^5.0.2",
+    "puppeteer": "^24.42.0",
     "typescript": "^5.8.3"
   }
 }

@@ -1,4 +1,4 @@
-import { Button, Column, Flex, Heading, IconButton, Tag, Text } from "@/once-ui/components";
+import { Button, Column, Flex, Heading, Tag, Text } from "@/once-ui/components";
 import { baseURL, identity, social, about } from "@/app/resources";
 import TableOfContents from "@/components/about/TableOfContents";
 import styles from "@/components/about/about.module.scss";
@@ -93,23 +93,14 @@ export default function About() {
               {social.map(
                 (item) =>
                   item.link && (
-                    <React.Fragment key={item.name}>
-                      <Button
-                        className="s-flex-hide"
-                        href={item.link}
-                        prefixIcon={item.icon}
-                        label={item.name}
-                        size="s"
-                        variant="secondary"
-                      />
-                      <IconButton
-                        className="s-flex-show"
-                        size="l"
-                        href={item.link}
-                        icon={item.icon}
-                        variant="secondary"
-                      />
-                    </React.Fragment>
+                    <Button
+                      key={item.name}
+                      href={item.link}
+                      prefixIcon={item.icon}
+                      label={item.name}
+                      size="s"
+                      variant="secondary"
+                    />
                   ),
               )}
             </Flex>

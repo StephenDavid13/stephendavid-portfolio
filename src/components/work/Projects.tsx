@@ -22,7 +22,7 @@ export function Projects({ range }: ProjectsProps) {
       <Heading variant="heading-default-l">
         Projects
       </Heading>
-      <Grid fillWidth columns="3" tabletColumns="3" mobileColumns="1" gap="m" marginBottom="32">
+      <Grid fillWidth columns="3" tabletColumns="3" mobileColumns="1" gap="m">
         {displayedProjects.map((post, index) => (
           <ProjectCard
             priority={index < 2}
