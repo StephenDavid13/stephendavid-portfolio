@@ -12,8 +12,14 @@ technologies:
     role: "Auth and Postgres database with row-level security for per-user data"
   - name: "Vercel"
     role: "Hosting and deployment"
+  - name: "Claude"
+    role: "AI pair programmer used to accelerate scaffolding, schema design, and iterative refactors"
 ---
 
 ## Overview
 
 A personal finance tool for recording income and expenses, categorising transactions, and tracking spending trends over time. Built on Next.js with Supabase handling authentication and the Postgres database behind it, so each account's records stay isolated without a separate back-end service. Deployed on Vercel for continuous preview and production builds.
+
+## AI-Assisted Development
+
+AI tooling, primarily Anthropic's Claude, was used as leverage throughout the build to compress delivery time without sacrificing code quality. Claude served as a pair programmer for boilerplate generation, schema design, and Supabase row-level security policies, while iterative prompt-based refactors helped surface edge cases earlier than a traditional review cycle would allow. The result was a working, end-to-end prototype shipped in a fraction of the time a conventional workflow would require, demonstrating how applied AI can act as a force multiplier across the full development lifecycle.
