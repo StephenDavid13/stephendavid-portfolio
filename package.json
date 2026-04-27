@@ -4,8 +4,8 @@
   "scripts": {
     "dev": "next dev",
     "export": "next export",
-    "build": "next build",
     "build:cv": "node scripts/generate-cv-pdf.mjs",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "compress-covers": "bash scripts/compress-covers.sh"

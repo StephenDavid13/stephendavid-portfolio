@@ -10,7 +10,7 @@ const projectRoot = path.resolve(__dirname, "..");
 
 const PORT = process.env.CV_PDF_PORT ?? "3457";
 const TARGET_URL = `http://localhost:${PORT}/about`;
-const OUTPUT_PATH = path.join(projectRoot, "public", "stephen-david-cv.pdf");
+const OUTPUT_PATH = path.join(projectRoot, "public", "Stephen Lawrence David - CV.pdf");
 
 function waitForReady(child, timeoutMs = 120_000) {
   return new Promise((resolve, reject) => {

@@ -8,14 +8,28 @@ import styles from "./CodeBlock.module.scss";
 
 import { Flex, Button, IconButton, Scroller, Row, StyleOverlay } from "../../components";
 
-import Prism from "prismjs";
-import "prismjs/plugins/line-highlight/prism-line-highlight";
-import "prismjs/plugins/line-numbers/prism-line-numbers";
-import "prismjs/components/prism-jsx";
-import "prismjs/components/prism-css";
-import "prismjs/components/prism-typescript";
-import "prismjs/components/prism-tsx";
 import classNames from "classnames";
+
+let prismPromise: Promise<typeof import("prismjs")> | null = null;
+const loadPrism = () => {
+  prismPromise ??= (async () => {
+    const PrismModule = await import("prismjs");
+    // @ts-expect-error — Prism plugin entries have no type declarations
+    await import("prismjs/plugins/line-highlight/prism-line-highlight");
+    // @ts-expect-error — Prism plugin entries have no type declarations
+    await import("prismjs/plugins/line-numbers/prism-line-numbers");
+    // @ts-expect-error — Prism plugin entries have no type declarations
+    await import("prismjs/components/prism-jsx");
+    // @ts-expect-error — Prism plugin entries have no type declarations
+    await import("prismjs/components/prism-css");
+    // @ts-expect-error — Prism plugin entries have no type declarations
+    await import("prismjs/components/prism-typescript");
+    // @ts-expect-error — Prism plugin entries have no type declarations
+    await import("prismjs/components/prism-tsx");
+    return PrismModule;
+  })();
+  return prismPromise;
+};
 import { SpacingToken } from "../../types";
 
 type CodeInstance = {
@@ -73,7 +87,13 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
 
   useEffect(() => {
     if (codeRef.current && codeInstances.length > 0) {
-      Prism.highlightAll();
+      let cancelled = false;
+      loadPrism().then((Prism) => {
+        if (!cancelled) Prism.default.highlightAll();
+      });
+      return () => {
+        cancelled = true;
+      };
     }
   }, [code, codeInstances.length]);
 

@@ -8,8 +8,8 @@ interface DownloadCVButtonProps {
   label?: string;
 }
 
-const CV_PATH = "/stephen-david-cv.pdf";
-const CV_FILENAME = "stephen-david-cv.pdf";
+const CV_PATH = "/Stephen Lawrence David - CV.pdf";
+const CV_FILENAME = "Stephen Lawrence David - CV.pdf";
 
 export function DownloadCVButton({
   size = "s",
