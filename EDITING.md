@@ -131,7 +131,7 @@ const identity = {
   timezone: "Australia/Melbourne",    // IANA tz — powers the Header clock
   email: "hello@stephendavid.dev",    // Public "mailto:" target
   emailAlt: "stephen.david.06@gmail.com", // Shown on /cv, not on /about
-  phone: "+61 477 274 345",
+  phone: "+61 477 274 245",
   website: "stephendavid.dev",
 };
 
