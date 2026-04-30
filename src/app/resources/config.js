@@ -17,7 +17,7 @@ const identity = {
   timezone: "Australia/Melbourne",
   email: "hello@stephendavid.dev",
   emailAlt: "stephen.david.06@gmail.com",
-  phone: "+61 477 274 345",
+  phone: "+61 477 274 245",
   website: "stephendavid.dev",
 };
 
