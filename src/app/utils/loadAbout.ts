@@ -33,6 +33,7 @@ export interface AboutFrontmatter {
   sections: AboutSection[];
   skills: AboutSkillGroup[];
   experience: AboutExperience[];
+  otherWorks: AboutExperience[];
   education: AboutEducation[];
   references: string;
 }

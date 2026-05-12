@@ -71,6 +71,28 @@ export function CVPrintView({ frontmatter }: CVPrintViewProps) {
         </section>
 
         <section className={styles.section}>
+          <h2 className={styles.sectionHeading}>Other Works</h2>
+          {frontmatter.otherWorks.map((work, idx) => (
+            <div key={`${work.company}-${idx}`} className={styles.experienceBlock}>
+              <p className={styles.experienceRole}>
+                <strong>{work.role}</strong>
+                <span className={styles.pipe}>|</span>
+                {work.company}
+              </p>
+              <p className={styles.experienceMeta}>
+                {work.location} · {work.timeframe}
+              </p>
+              {work.summary && <p className={styles.experienceSummary}>{work.summary}</p>}
+              <ul className={styles.achievements}>
+                {work.achievements.map((a, i) => (
+                  <li key={i}>{a}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </section>
+
+        <section className={styles.section}>
           <h2 className={styles.sectionHeading}>Education</h2>
           {frontmatter.education.map((edu, idx) => (
             <div key={`${edu.institution}-${idx}`} className={styles.educationBlock}>

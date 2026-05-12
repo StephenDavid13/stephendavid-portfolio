@@ -34,6 +34,11 @@ export default function About() {
       items: frontmatter.experience.map((experience) => experience.company),
     },
     {
+      title: "Other Works",
+      display: true,
+      items: frontmatter.otherWorks.map((work) => work.company),
+    },
+    {
       title: "Education",
       display: true,
       items: frontmatter.education.map((edu) => edu.institution),
@@ -168,6 +173,49 @@ export default function About() {
                     as="li"
                     variant="body-default-m"
                     key={`${experience.company}-ach-${i}`}
+                  >
+                    {achievement}
+                  </Text>
+                ))}
+              </Column>
+            </Column>
+          ))}
+        </Column>
+
+        <Heading
+          as="h2"
+          id="Other Works"
+          variant="display-strong-s"
+          marginBottom="m"
+        >
+          Other Works
+        </Heading>
+        <Column fillWidth gap="l" marginBottom="40">
+          {frontmatter.otherWorks.map((work, index) => (
+            <Column key={`${work.company}-${index}`} fillWidth>
+              <Flex fillWidth horizontal="space-between" vertical="end" marginBottom="4">
+                <Text id={work.company} variant="heading-strong-l">
+                  {work.company}
+                </Text>
+                <Text variant="heading-default-xs" onBackground="neutral-weak">
+                  {work.timeframe}
+                </Text>
+              </Flex>
+              <Text variant="body-default-s" onBackground="brand-weak" marginBottom="xs">
+                {work.role}
+                {work.location ? ` · ${work.location}` : ""}
+              </Text>
+              {work.summary && (
+                <Text variant="body-default-m" marginBottom="m">
+                  {work.summary}
+                </Text>
+              )}
+              <Column as="ul" gap="16">
+                {work.achievements.map((achievement, i) => (
+                  <Text
+                    as="li"
+                    variant="body-default-m"
+                    key={`${work.company}-ach-${i}`}
                   >
                     {achievement}
                   </Text>
