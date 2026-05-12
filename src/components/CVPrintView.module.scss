@@ -9,7 +9,10 @@
 .page {
   background: #ffffff;
   color: #111111;
-  padding: 0;
+  padding: 0 22mm;
+  box-sizing: border-box;
+  width: 210mm;
+  max-width: 210mm;
 }
 
 /* Header */
@@ -103,9 +106,18 @@
 /* Experience */
 
 .experienceBlock {
-  break-inside: avoid;
-  page-break-inside: avoid;
   margin-top: var(--static-space-16);
+  break-inside: auto;
+  page-break-inside: auto;
+  orphans: 3;
+  widows: 3;
+}
+
+.experienceRole,
+.experienceMeta,
+.experienceSummary {
+  break-after: avoid;
+  page-break-after: avoid;
 }
 
 .experienceBlock:first-of-type {
@@ -152,6 +164,8 @@
 
 .achievements li {
   margin-bottom: var(--static-space-2);
+  break-inside: avoid;
+  page-break-inside: avoid;
 }
 
 .achievements li::marker {

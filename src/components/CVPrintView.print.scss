@@ -1,15 +1,52 @@
+/* Vertical margins come from @page so they repeat on every printed page.
+   Horizontal margins are 0 here and instead applied as padding on .page,
+   because the once-ui flex html/body wrappers cause long lines to overflow
+   the @page horizontal content area; pinning the CV root to 210mm with
+   internal horizontal padding sidesteps that. */
 @page {
   size: A4;
-  margin: 20mm 22mm;
+  margin: 20mm 0;
 }
 
 @media print {
+  /* once-ui renders <html> as Flex and <body> as Column (display: flex).
+     In print, flex parents don't reliably constrain children to the @page
+     content width, so long lines wrap at a width wider than the printable
+     area and get clipped at the right edge. Force these back to block-level
+     and hard-cap their widths so the CV root sizes to the page. */
   html,
   body {
+    display: block !important;
     background: #ffffff !important;
     color-scheme: light;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: 0 !important;
+    min-width: 0 !important;
+    width: 210mm !important;
+    max-width: 210mm !important;
+    overflow: visible !important;
+  }
+
+  /* Hard-constrain the CV root to A4 width so it cannot grow with its parent
+     flex containers. Padding inside .page (in CVPrintView.module.scss) supplies
+     the page margins; box-sizing keeps the total width at exactly 210mm. */
+  [data-cv-print-root] {
+    display: block !important;
+    width: 210mm !important;
+    max-width: 210mm !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+
+  [data-cv-print-root] *,
+  [data-cv-print-root] *::before,
+  [data-cv-print-root] *::after {
+    box-sizing: border-box;
   }
 
   /* Re-map once-ui's dark-theme tokens to readable light-theme values for print

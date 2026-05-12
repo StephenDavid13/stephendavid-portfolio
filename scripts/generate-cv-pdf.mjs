@@ -53,6 +53,10 @@ async function main() {
     browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
 
+    // Set the viewport to A4 dimensions at 96dpi so initial screen layout
+    // matches the print sheet. deviceScaleFactor 2 keeps PDF text crisp.
+    await page.setViewport({ width: 794, height: 1123, deviceScaleFactor: 2 });
+
     console.log(`[cv-pdf] visiting ${TARGET_URL}…`);
     // Dev mode compiles the page on first request, which can race ahead of
     // networkidle. Wait for the CV marker element before printing.
