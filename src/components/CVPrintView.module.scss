@@ -13,26 +13,33 @@
   box-sizing: border-box;
   width: 210mm;
   max-width: 210mm;
+  /* Classic sans stack rather than the site's Geist — Arial is the face that
+     actually embeds in the generated PDF and is the safest for ATS parsers.
+     Calibri leads for anyone printing on a machine that has it. */
+  font-family: Calibri, Arial, Helvetica, sans-serif;
 }
 
 /* Header */
 
 .header {
-  margin-bottom: var(--static-space-20);
+  padding: 3mm 0 5mm;
+  margin-bottom: var(--static-space-24);
   text-align: center;
 }
 
 .name {
-  font-size: 1.5rem;
+  font-size: 1.55rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
+  line-height: 1.2;
   text-transform: uppercase;
   margin: 0;
 }
 
 .subline {
   font-size: 0.8rem;
-  margin: 0.25rem 0 0;
+  letter-spacing: 0.02em;
+  margin: 0.5rem 0 0;
   color: #333;
 }
 
@@ -40,8 +47,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: var(--static-space-8);
-  margin: 0.4rem 0 0;
+  gap: var(--static-space-12);
+  margin: 0.55rem 0 0;
   font-size: 0.75rem;
   color: #555;
 }
