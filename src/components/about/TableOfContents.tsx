@@ -1,89 +1,70 @@
 "use client";
 
-import React from "react";
-import { Column, Flex, Text } from "@/once-ui/components";
-import styles from "./about.module.scss";
+import { useEffect, useState } from "react";
 
-interface TableOfContentsProps {
-  structure: {
-    title: string;
-    display: boolean;
-    items: string[];
-  }[];
-  about: {
-    tableOfContent: {
-      display: boolean;
-      subItems: boolean;
-    };
-  };
-}
+export type TocSection = { id: string; title: string };
 
-const TableOfContents: React.FC<TableOfContentsProps> = ({ structure, about }) => {
-  const scrollTo = (id: string, offset: number) => {
-    const element = document.getElementById(id);
-    if (element) {
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.scrollY - offset;
+/**
+ * Sticky section index. Tracks the section in view with IntersectionObserver
+ * rather than a scroll listener, so it costs nothing per frame.
+ */
+export function TableOfContents({ sections }: Readonly<{ sections: TocSection[] }>) {
+  const [active, setActive] = useState(sections[0]?.id ?? "");
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-    }
-  };
+  useEffect(() => {
+    const els = sections
+      .map((s) => document.getElementById(s.id))
+      .filter((el): el is HTMLElement => Boolean(el));
+    if (!els.length) return;
 
-  if (!about.tableOfContent.display) return null;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+        if (visible) setActive(visible.target.id);
+      },
+      { rootMargin: "-20% 0px -70% 0px", threshold: 0 },
+    );
+
+    for (const el of els) observer.observe(el);
+    return () => observer.disconnect();
+  }, [sections]);
 
   return (
-    <Column
-      left="0"
-      style={{
-        top: "50%",
-        transform: "translateY(-50%)",
-        whiteSpace: "nowrap",
-      }}
-      position="fixed"
-      paddingLeft="24"
-      gap="32"
-      hide="m"
-    >
-      {structure
-        .filter((section) => section.display)
-        .map((section, sectionIndex) => (
-          <Column key={sectionIndex} gap="12">
-            <Flex
-              cursor="interactive"
-              className={styles.hover}
-              gap="8"
-              vertical="center"
-              onClick={() => scrollTo(section.title, 80)}
-            >
-              <Flex height="1" minWidth="16" background="neutral-strong"></Flex>
-              <Text>{section.title}</Text>
-            </Flex>
-            {about.tableOfContent.subItems && (
-              <>
-                {section.items.map((item, itemIndex) => (
-                  <Flex
-                    hide="l"
-                    key={itemIndex}
-                    style={{ cursor: "pointer" }}
-                    className={styles.hover}
-                    gap="12"
-                    paddingLeft="24"
-                    vertical="center"
-                    onClick={() => scrollTo(item, 80)}
-                  >
-                    <Flex height="1" minWidth="8" background="neutral-strong"></Flex>
-                    <Text>{item}</Text>
-                  </Flex>
-                ))}
-              </>
-            )}
-          </Column>
-        ))}
-    </Column>
+    <nav aria-label="On this page" className="sticky top-24 hidden self-start lg:block">
+      <p
+        className="font-mono text-[0.625rem] uppercase tracking-[0.2em]"
+        style={{ color: "var(--fg-faint)" }}
+      >
+        On this page
+      </p>
+      <ul className="mt-5 flex flex-col gap-1">
+        {sections.map((s) => {
+          const isActive = active === s.id;
+          return (
+            <li key={s.id}>
+              <a
+                href={`#${s.id}`}
+                className="flex items-center gap-3 py-1.5 text-sm transition-colors duration-300"
+                style={{ color: isActive ? "var(--accent)" : "var(--fg-faint)" }}
+              >
+                <span
+                  className="h-px transition-all duration-300"
+                  style={{
+                    width: isActive ? "26px" : "12px",
+                    background: isActive ? "var(--accent)" : "var(--rule-strong)",
+                  }}
+                  aria-hidden="true"
+                />
+                {s.title}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
   );
-};
+}
 
 export default TableOfContents;

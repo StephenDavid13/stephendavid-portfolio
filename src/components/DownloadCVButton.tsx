@@ -1,18 +1,36 @@
 "use client";
 
-import { Button } from "@/once-ui/components";
+import { Button } from "@/components/ui/Button";
 
 interface DownloadCVButtonProps {
   size?: "s" | "m" | "l";
-  variant?: "primary" | "secondary" | "tertiary";
+  variant?: "primary" | "secondary" | "ghost";
   label?: string;
 }
 
 const CV_PATH = "/Stephen Lawrence David - CV.pdf";
 const CV_FILENAME = "Stephen Lawrence David - CV.pdf";
 
+const DocIcon = () => (
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.7"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z" />
+    <path d="M14 3v5h5" />
+    <path d="M12 12v5M9.5 14.5 12 17l2.5-2.5" />
+  </svg>
+);
+
 export function DownloadCVButton({
-  size = "s",
+  size = "m",
   variant = "primary",
   label = "Download CV",
 }: Readonly<DownloadCVButtonProps>) {
@@ -26,13 +44,8 @@ export function DownloadCVButton({
   };
 
   return (
-    <Button
-      onClick={handleDownload}
-      prefixIcon="document"
-      label={label}
-      size={size}
-      variant={variant}
-      data-border="rounded"
-    />
+    <Button onClick={handleDownload} size={size} variant={variant} iconLeft={<DocIcon />}>
+      {label}
+    </Button>
   );
 }

@@ -1,30 +1,22 @@
-import { Column, Flex, Skeleton } from "@/once-ui/components";
+import { Skeleton } from "@/components/ui/Skeleton";
 
 export default function Loading() {
   return (
-    <Column maxWidth="m" paddingY="l" gap="xl">
-      <Column horizontal="center" gap="s" fillWidth>
-        <Skeleton shape="line" width="l" height="xl" />
-        <Skeleton shape="line" width="m" height="m" />
-        <Flex gap="8" paddingTop="12">
-          <Skeleton shape="line" width="xs" height="s" />
-          <Skeleton shape="line" width="xs" height="s" />
-          <Skeleton shape="line" width="xs" height="s" />
-        </Flex>
-      </Column>
-      <Flex fillWidth mobileDirection="column" gap="xl">
-        <Column flex={1} gap="m">
-          <Skeleton shape="line" width="m" height="l" />
-          {Array.from({ length: 4 }).map((_, i) => (
-            <Skeleton key={i} shape="line" width="l" height="s" delay="1" />
-          ))}
-        </Column>
-        <Column flex={1} gap="m">
-          <Skeleton shape="line" width="m" height="l" />
-          <Skeleton shape="block" height="m" delay="2" />
-          <Skeleton shape="block" height="m" delay="3" />
-        </Column>
-      </Flex>
-    </Column>
+    <div
+      role="status"
+      aria-label="Loading"
+      className="mx-auto max-w-[1240px] px-6 pt-16 md:px-10 md:pt-24"
+    >
+      <Skeleton className="h-3 w-40" />
+      <Skeleton className="mt-8 h-24 w-[min(38rem,100%)]" />
+      <Skeleton className="mt-4 h-24 w-[min(28rem,100%)]" />
+      <div className="mt-16 flex flex-col gap-6">
+        <Skeleton className="h-px w-full" />
+        <Skeleton className="h-14 w-[min(30rem,100%)]" />
+        <Skeleton className="h-px w-full" />
+        <Skeleton className="h-14 w-[min(26rem,100%)]" />
+        <Skeleton className="h-px w-full" />
+      </div>
+    </div>
   );
 }
