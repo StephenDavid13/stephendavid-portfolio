@@ -1,141 +1,72 @@
-import "@/once-ui/styles/index.scss";
-import "@/once-ui/tokens/index.scss";
+import "./globals.css";
 
 import classNames from "classnames";
 
-import { Footer, Header } from "@/components";
+import { Header } from "@/components/shell/Header";
+import { Footer } from "@/components/shell/Footer";
 import { CVPrintView } from "@/components/CVPrintView";
 import { loadAbout } from "@/app/utils/loadAbout";
-import { baseURL, effects, style, font, home } from "@/app/resources";
-
-import { Background, Column, Flex, ThemeProvider, ToastProvider } from "@/once-ui/components";
-import type { opacity, SpacingToken } from "@/once-ui/types";
-import { Meta } from "@/once-ui/modules";
+import { buildMetadata } from "@/lib/seo";
+import { baseURL, font, home, identity, social } from "@/app/resources";
 
 export async function generateMetadata() {
-  return Meta.generate({
+  return buildMetadata({
     title: home.title,
     description: home.description,
-    baseURL: baseURL,
+    baseURL,
     path: home.path,
     image: home.image,
   });
 }
 
-interface RootLayoutProps {
-  children: React.ReactNode;
-}
+// Runs before first paint so the theme never flashes.
+const THEME_SCRIPT = `
+(function(){
+  try {
+    var s = localStorage.getItem('theme');
+    var t = (s === 'light' || s === 'dark')
+      ? s
+      : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+})();
+`;
 
-export default async function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const { frontmatter } = loadAbout();
 
   return (
-    <Flex
-      suppressHydrationWarning
-      as="html"
+    <html
       lang="en"
-      background="page"
-      data-neutral={style.neutral}
-      data-brand={style.brand}
-      data-accent={style.accent}
-      data-solid={style.solid}
-      data-solid-style={style.solidStyle}
-      data-border={style.border}
-      data-surface={style.surface}
-      data-transition={style.transition}
-      className={classNames(
-        font.primary.variable,
-        font.secondary.variable,
-        font.tertiary.variable,
-        font.code.variable,
-      )}
+      suppressHydrationWarning
+      className={classNames(font.primary.variable, font.code.variable)}
     >
       <head>
-        <script
-          // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  const theme = localStorage.getItem('theme') || 'system';
-                  const root = document.documentElement;
-                  if (theme === 'system') {
-                    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                    root.setAttribute('data-theme', isDark ? 'dark' : 'light');
-                  } else {
-                    root.setAttribute('data-theme', theme);
-                  }
-                } catch (e) {
-                  document.documentElement.setAttribute('data-theme', 'dark');
-                }
-              })();
-            `,
-          }}
-        />
+        {/* biome-ignore lint/security/noDangerouslySetInnerHtml: must run before paint */}
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
       </head>
-      <ThemeProvider>
-        <ToastProvider>
-          <Column style={{ minHeight: "100vh" }} as="body" fillWidth margin="0" padding="0">
-            <Background
-              position="fixed"
-              mask={{
-                x: effects.mask.x,
-                y: effects.mask.y,
-                radius: effects.mask.radius,
-                cursor: effects.mask.cursor
-              }}
-              gradient={{
-                display: effects.gradient.display,
-                opacity: effects.gradient.opacity as opacity,
-                x: effects.gradient.x,
-                y: effects.gradient.y,
-                width: effects.gradient.width,
-                height: effects.gradient.height,
-                tilt: effects.gradient.tilt,
-                colorStart: effects.gradient.colorStart,
-                colorEnd: effects.gradient.colorEnd,
-              }}
-              dots={{
-                display: effects.dots.display,
-                opacity: effects.dots.opacity as opacity,
-                size: effects.dots.size as SpacingToken,
-                color: effects.dots.color,
-              }}
-              grid={{
-                display: effects.grid.display,
-                opacity: effects.grid.opacity as opacity,
-                color: effects.grid.color,
-                width: effects.grid.width,
-                height: effects.grid.height,
-              }}
-              lines={{
-                display: effects.lines.display,
-                opacity: effects.lines.opacity as opacity,
-                size: effects.lines.size as SpacingToken,
-                thickness: effects.lines.thickness,
-                angle: effects.lines.angle,
-                color: effects.lines.color,
-              }}
-            />
-            <Flex fillWidth minHeight="16" hide="s" />
-            <Header />
-            <Flex
-              zIndex={0}
-              fillWidth
-              paddingY="l"
-              paddingX="l"
-              horizontal="center"
-              flex={1}
-            >
-              <Flex horizontal="center" fillWidth minHeight="0">
-                {children}
-              </Flex>
-            </Flex>
-            <Footer />
-            <CVPrintView frontmatter={frontmatter} />
-          </Column>
-        </ToastProvider>
-      </ThemeProvider>
-    </Flex>
+      <body className="grain flex min-h-dvh flex-col">
+        <a href="#main" className="skip-link">
+          Skip to content
+        </a>
+
+        <Header name={identity.name} />
+
+        <main id="main" className="flex-1 pt-14">
+          {children}
+        </main>
+
+        <Footer
+          name={identity.name}
+          location={identity.location}
+          email={identity.email}
+          socials={social.map((s) => ({ name: s.name, link: s.link }))}
+        />
+
+        <CVPrintView frontmatter={frontmatter} />
+      </body>
+    </html>
   );
 }

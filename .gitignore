@@ -34,3 +34,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+# LinkedIn image exports (not part of the site build)
+linkedin-covers/
+
+# Full-page site archive captures
+site-archive/

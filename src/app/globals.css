@@ -1,0 +1,196 @@
+@import "tailwindcss";
+
+/*
+ * Theme. Brand values carried over unchanged: aqua as the single accent,
+ * Geist as the type. Everything else is a neutral scale plus one ink colour.
+ */
+@theme {
+  --color-aqua-300: #0c464b;
+  --color-aqua-400: #0c6367;
+  --color-aqua-500: #0b8184;
+  --color-aqua-600: #08a6a5;
+  --color-aqua-700: #01c7c3;
+  --color-aqua-800: #4de9dc;
+
+  --color-ink-950: #070707;
+  --color-ink-900: #0d0d0d;
+  --color-ink-850: #121212;
+  --color-ink-800: #191919;
+  --color-ink-700: #262626;
+  --color-ink-600: #3d3d3d;
+  --color-ink-500: #5c5c5c;
+  --color-ink-400: #808080;
+  --color-ink-300: #a3a3a3;
+  --color-ink-200: #c9c9c9;
+  --color-ink-100: #e6e6e6;
+  --color-ink-50: #f5f4f1;
+  --color-ink-0: #ffffff;
+
+  --font-sans: var(--font-primary), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-code), ui-monospace, SFMono-Regular, monospace;
+
+  --ease-out-quint: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/*
+ * Semantic layer. Components reference these, so a theme flip is one block
+ * rather than a `dark:` variant on every utility.
+ */
+@layer base {
+  :root,
+  [data-theme="dark"] {
+    color-scheme: dark;
+    --bg: var(--color-ink-950);
+    --bg-raised: var(--color-ink-900);
+    --bg-sunken: var(--color-ink-850);
+    --fg: #f7f7f5;
+    --fg-muted: var(--color-ink-300);
+    --fg-faint: var(--color-ink-500);
+    --rule: rgb(255 255 255 / 0.11);
+    --rule-strong: rgb(255 255 255 / 0.2);
+    --accent: var(--color-aqua-700);
+    --accent-ink: #04191a;
+    --accent-soft: rgb(1 199 195 / 0.14);
+  }
+
+  [data-theme="light"] {
+    color-scheme: light;
+    --bg: var(--color-ink-50);
+    --bg-raised: #ffffff;
+    --bg-sunken: #eeece7;
+    --fg: var(--color-ink-950);
+    --fg-muted: var(--color-ink-600);
+    --fg-faint: var(--color-ink-400);
+    --rule: rgb(0 0 0 / 0.13);
+    --rule-strong: rgb(0 0 0 / 0.24);
+    /* Aqua at full brightness fails contrast on a light ground, so light mode
+       steps down the same scale rather than switching hue. */
+    --accent: var(--color-aqua-500);
+    --accent-ink: #ffffff;
+    --accent-soft: rgb(11 129 132 / 0.12);
+  }
+
+  * {
+    border-color: var(--rule);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  [id] {
+    scroll-margin-top: 6rem;
+  }
+}
+
+@layer utilities {
+  /* Optical tightening for the very large display sizes. */
+  .text-display {
+    letter-spacing: -0.04em;
+    line-height: 0.94;
+  }
+
+  .rule-t {
+    border-top: 1px solid var(--rule);
+  }
+
+  .rule-b {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /*
+   * The masked word-reveal that used to live here is gone. Clipping each word
+   * to an overflow:hidden box shears italic overhang and descenders, and eats
+   * the whitespace between words. The hero now fades and lifts words instead,
+   * which needs no mask and cannot clip anything.
+   */
+}
+
+/* Grain. Fixed and non-interactive so it never repaints on scroll. */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0.2;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+}
+
+[data-theme="light"] .grain::after {
+  opacity: 0.1;
+  mix-blend-mode: multiply;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 100;
+  padding: 0.7rem 1.1rem;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 0.875rem;
+  text-decoration: none;
+  transform: translateY(-200%);
+  transition: transform 0.25s var(--ease-out-quint);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Marquee track. CSS-driven so it costs nothing per frame. */
+@keyframes marquee-scroll {
+  from { transform: translate3d(0, 0, 0); }
+  /* The track holds two identical groups, so half its width loops seamlessly. */
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+
+.marquee-track {
+  animation: marquee-scroll linear infinite;
+  will-change: transform;
+}
+
+.marquee-mask {
+  mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}

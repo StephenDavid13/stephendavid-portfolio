@@ -46,6 +46,10 @@ const home = {
   title: `${identity.name} — ${identity.role}`,
   description: `Portfolio showcasing work by ${identity.name}, ${identity.role} based in ${identity.location}.`,
   headline: "Stephen David",
+  // Hero statement. `accent` must appear verbatim inside `statement`; it is
+  // the phrase rendered in italic aqua.
+  statement: "Websites and apps, built end to end.",
+  accent: "end to end",
   subline:
     "Full-stack developer crafting scalable web solutions with solid engineering and thoughtful responsive design.",
   cta: {
