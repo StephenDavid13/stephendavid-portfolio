@@ -1,15 +1,17 @@
 ---
 title: "Whitecomb Range"
 publishedAt: "2026-01-17"
-summary: "Custom WordPress theme with a three-product-line booking system for an outdoor experience ranch."
+summary: "Custom WordPress theme for a New Zealand high-country property selling accommodation, shooting courses, and competitive events through one booking flow."
 images:
   - "/images/projects/whitecombrange/cover-image.webp"
 link: "https://whitecombrange.com/"
 technologies:
   - name: "WordPress"
-    role: "Custom theme"
+    role: "Custom theme built from scratch"
   - name: "WooCommerce"
-    role: "Scaffolded for future online sales"
+    role: "Live checkout through the Stripe gateway"
+  - name: "The Events Calendar"
+    role: "Scheduling for shooting matches and competition dates"
   - name: "PHP"
     role: "Booking logic and theme templating"
   - name: "Tailwind CSS"
@@ -18,4 +20,16 @@ technologies:
 
 ## Overview
 
-A custom WordPress theme for Whitecomb Range, an outdoor experience ranch. The core build was a booking system covering three distinct product lines — accommodation, training courses, and events — each with its own availability logic and enquiry flow. Styled mobile-first with Tailwind and scaffolded with WooCommerce ready to switch on when the ranch moves to direct online sales.
+Whitecomb Range is a private property in the New Zealand high country that sells three things which only look alike from a distance: somewhere to sleep, something to learn, and something to compete in. Each one answers "is this available?" differently, and none of them fit a standard product page.
+
+## Three Product Lines, One Flow
+
+Accommodation spans The Lodge, Norman's Hut, and The Tram Car — a modern group lodge, a traditional high-country hut sleeping seven, and a back-country tram car with a pot-belly stove and a stack of firewood. Different capacities, different seasons, different guests.
+
+Training courses are multi-day, capped by headcount, and bundle meals and beds into the price — so a course booking has to reserve accommodation as well as a seat. Competitive shooting events run to a fixed calendar and are handled by The Events Calendar rather than forced into a product model that was never going to fit them.
+
+The real work was making all three arrive at the same enquiry and checkout path, so a visitor never has to know which system is answering.
+
+## Build
+
+A custom theme rather than a page-builder, PHP templating with Tailwind over the top, styled mobile-first because that is how the audience actually books. WooCommerce now runs live checkout through Stripe, so the property takes payment directly instead of trading emails.

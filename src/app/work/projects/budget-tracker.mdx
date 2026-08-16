@@ -9,17 +9,19 @@ technologies:
   - name: "Next.js"
     role: "Application framework and routing"
   - name: "Supabase"
-    role: "Auth and Postgres database with row-level security for per-user data"
+    role: "Auth and Postgres with row-level security for per-user data"
   - name: "Vercel"
     role: "Hosting and deployment"
   - name: "Claude"
-    role: "AI pair programmer used to accelerate scaffolding, schema design, and iterative refactors"
+    role: "Pair programmer for scaffolding, schema design, and RLS policies"
 ---
 
 ## Overview
 
-A personal finance tool for recording income and expenses, categorising transactions, and tracking spending trends over time. Built on Next.js with Supabase handling authentication and the Postgres database behind it, so each account's records stay isolated without a separate back-end service. Deployed on Vercel for continuous preview and production builds.
+A personal finance tool for recording income and expenses, categorising transactions, and watching spending trends develop over time. Next.js on the front, Supabase handling auth and Postgres behind it, so each account's records stay isolated at the database layer rather than depending on the application to remember to filter. Deployed on Vercel.
 
-## AI-Assisted Development
+## Building With Claude
 
-AI tooling, primarily Anthropic's Claude, was used as leverage throughout the build to compress delivery time without sacrificing code quality. Claude served as a pair programmer for boilerplate generation, schema design, and Supabase row-level security policies, while iterative prompt-based refactors helped surface edge cases earlier than a traditional review cycle would allow. The result was a working, end-to-end prototype shipped in a fraction of the time a conventional workflow would require, demonstrating how applied AI can act as a force multiplier across the full development lifecycle.
+Claude did the scaffolding, the schema, and the Supabase row-level security policies. That last part is the reason this is worth writing down: RLS is the layer of a Supabase app most likely to be quietly wrong, because a policy that is too permissive fails silently and looks identical to one that works. Having a second reader interrogate every policy — *what does this allow that I did not intend?* — costs almost nothing, and it is exactly the review a side project would otherwise never get.
+
+The speed was not the interesting part. The interesting part was that the boring, high-risk layer ended up with more scrutiny than the fun one.

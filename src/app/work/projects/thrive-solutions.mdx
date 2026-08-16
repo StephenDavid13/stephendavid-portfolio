@@ -1,0 +1,31 @@
+---
+title: "Thrive Business Solutions"
+publishedAt: "2026-08-16"
+summary: "Next.js and Payload CMS build for a Brisbane bookkeeping firm — nine service pages, one route, and a team that publishes without a developer."
+images:
+  - "/images/projects/thrivesolutions/cover-image.webp"
+link: "https://www.thrivesolutions.com.au/"
+technologies:
+  - name: "Next.js"
+    role: "App Router front-end, server-rendered and statically generated"
+  - name: "Payload CMS"
+    role: "Content models for services, articles, testimonials, and media"
+  - name: "TypeScript"
+    role: "Shared types across the CMS schema and the front-end"
+  - name: "Tailwind CSS"
+    role: "Design system for the modular page blocks"
+---
+
+## Overview
+
+Thrive Business Solutions handles bookkeeping and back-office work for labour hire, NDIS, healthcare, and construction operators around Brisbane — the kind of businesses that outgrow a generalist bookkeeper somewhere around the fiftieth employee. The brand does not hedge. *More Than Just Bloody Good Bookkeepers* runs across the hero, and the build had to carry that confidence while holding nine services, a growing article library, and a sales team that wants new pages live the week they ask for them.
+
+## Content Architecture
+
+The nine offerings — bookkeeping and BAS, payroll, forensic services, debtor finance, and the rest — are a Payload collection rendered through a single `services/[slug]` route, not nine hand-built pages. Each composes the same modular blocks: problem statement, value proposition, testimonial, related services, closing CTA. Articles under `resources/[slug]` work the same way.
+
+The point of that structure is what it costs to grow. A tenth service is a CMS entry written by the person who sells it, not a ticket, an estimate, and a deployment.
+
+## Front-End
+
+Next.js App Router with Payload running inside the same application, so content is queried locally instead of over a network hop, and pages ship server-rendered with media served through Payload's own handler. The enquiry form mirrors the service catalogue in its dropdown, which means a lead arrives already sorted into the part of the business that should answer it.

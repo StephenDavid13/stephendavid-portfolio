@@ -1,13 +1,13 @@
 ---
 title: "Alecs and Gelo Wedding Invitation"
 publishedAt: "2026-04-19"
-summary: "A wedding invitation website built with Next.js."
+summary: "A statically rendered Next.js wedding invitation, built for the way invitations actually travel — forwarded, on a phone."
 images:
   - "/images/projects/alecsandgelo/cover-image.webp"
 link: "https://www.alecsandgelo.com/"
 technologies:
   - name: "Next.js"
-    role: "Static rendering for fast loads and easy link sharing"
+    role: "Static rendering for fast loads and clean link previews"
   - name: "Tailwind CSS"
     role: "Mobile-first styling"
   - name: "Vercel"
@@ -16,4 +16,6 @@ technologies:
 
 ## Overview
 
-A Next.js wedding invitation site for Alecs and Gelo, deployed on Vercel. Built to render quickly on mobile and share cleanly when dropped into messaging apps — the fastest path a guest sees from a forwarded link to the event details.
+A wedding invitation is a link that gets forwarded — into a group chat, onto a lock screen, to a relative on a bad connection. So the entire build optimises for one path: someone taps a URL they did not ask for and needs the date, the place, and the RSVP before their attention runs out.
+
+Statically rendered with Next.js and served from Vercel, which makes it close to instant on a phone and gives it a clean preview card when it lands in a messaging app. A small project with a narrow brief, and a good reminder that the right architecture is sometimes just *no server at all*.

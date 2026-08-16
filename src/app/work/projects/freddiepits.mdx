@@ -1,7 +1,7 @@
 ---
 title: "Freddiepits Studio"
 publishedAt: "2025-05-19"
-summary: "Custom WordPress theme for a creative photography and videography studio."
+summary: "Custom WordPress theme and live print store for a Melbourne fine art photography studio, with framing variants across five sizes and four finishes."
 images:
   - "/images/projects/freddiepits/cover-image.webp"
 link: "https://freddiepitsstudio.com.au/"
@@ -9,13 +9,21 @@ technologies:
   - name: "WordPress"
     role: "Custom theme, not a starter"
   - name: "WooCommerce"
-    role: "Scaffolded for future merch and print sales"
+    role: "Live print store taking payment via WooCommerce Payments and PayPal"
   - name: "PHP"
-    role: "Custom theme logic and dynamic content"
+    role: "Theme logic, product variants, and dynamic galleries"
   - name: "Tailwind CSS"
     role: "Front-end styling"
 ---
 
 ## Overview
 
-A custom WordPress theme for Freddiepits Studio, a creative photography and videography studio. Built from scratch with PHP templating and Tailwind CSS rather than a page-builder, so the visual identity stays precise and the front-end stays fast. WooCommerce was scaffolded into the theme, ready to switch on when the studio's merch arm launches.
+Freddiepits Studio sells fine art prints out of Melbourne — European landscapes and classic automotive work — alongside private shoots. Selling a photograph online is mostly a problem of restraint: show the image large, get out of the way, and quietly handle the fact that one photograph is really twenty products.
+
+## The Variant Problem
+
+Every print is offered in five sizes, from A3 up to 150×100cm, framed in black, white, or oak, or left unframed. That is a variant matrix sitting behind each image, and it has to resolve without the buyer ever seeing a matrix — people choose a wall, not a SKU. WooCommerce carries the commerce underneath, taking payment through WooCommerce Payments and PayPal.
+
+## Build
+
+A custom theme rather than a page-builder, so the gallery stays precise and the front-end stays fast. A print store that renders its own product photography slowly has already lost the argument. Tailwind for styling, PHP templating for the collections and the Journal, and the private shoot enquiries routed through the same contact flow as print questions.
