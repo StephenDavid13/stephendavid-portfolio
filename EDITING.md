@@ -127,8 +127,8 @@ Edit `src/app/resources/config.js`:
 const identity = {
   name: "Stephen David",
   role: "Full-Stack Web Developer",
-  location: "Melbourne, VIC",         // Display string
-  timezone: "Australia/Melbourne",    // IANA tz — powers the Header clock
+  location: "Brisbane, QLD",         // Display string
+  timezone: "Australia/Brisbane",    // IANA tz — powers the Header clock
   email: "hello@stephendavid.dev",    // Public "mailto:" target
   emailAlt: "stephen.david.06@gmail.com", // Shown on /cv, not on /about
   phone: "+61 477 274 245",
