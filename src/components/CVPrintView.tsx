@@ -14,7 +14,9 @@ export function CVPrintView({ frontmatter }: CVPrintViewProps) {
         <header className={styles.header}>
           <h1 className={styles.name}>{identity.name}</h1>
           <p className={styles.subline}>
-            {identity.role} | {identity.location}
+            {[identity.role, identity.cvLocation, identity.cvAvailability]
+              .filter(Boolean)
+              .join(" | ")}
           </p>
           <p className={styles.contactLine}>
             <a href={`mailto:${identity.emailAlt}`}>{identity.emailAlt}</a>

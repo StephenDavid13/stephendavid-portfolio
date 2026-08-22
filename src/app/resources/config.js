@@ -14,6 +14,13 @@ const identity = {
   name: "Stephen David",
   role: "Full-Stack Web Developer",
   location: "Brisbane, QLD",
+  // CV-only variants. `cvLocation` is city + country because an overseas
+  // recruiter reads "Brisbane, Australia" instantly and a suburb not at all;
+  // `cvAvailability` pre-empts the "would need relocating" assumption. Swap
+  // cvLocation for "Paddington, QLD", or set either to "" to drop it from the
+  // CV subline entirely.
+  cvLocation: "Brisbane, Australia",
+  cvAvailability: "Open to Australia, New Zealand & remote",
   timezone: "Australia/Brisbane",
   email: "hello@stephendavid.dev",
   emailAlt: "stephen.david.06@gmail.com",
