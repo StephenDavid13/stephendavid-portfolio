@@ -9,6 +9,16 @@
 }
 
 @media print {
+  /* Single knob for how tightly the CV prints. Every size in
+     CVPrintView.module.scss is expressed in rem, so the root font size scales
+     type, leading, gaps, and margins together, while the page geometry above
+     is in mm and stays put. 15px (down from the 16px default) is what pulls
+     the leadership CV back onto two pages, and leaves the second page around
+     85% full so a few more lines of content will not spill onto a third. */
+  html {
+    font-size: 15px !important;
+  }
+
   /* once-ui renders <html> as Flex and <body> as Column (display: flex).
      In print, flex parents don't reliably constrain children to the @page
      content width, so long lines wrap at a width wider than the printable
