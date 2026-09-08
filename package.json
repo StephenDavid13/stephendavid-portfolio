@@ -5,6 +5,7 @@
     "dev": "next dev",
     "export": "next export",
     "build:cv": "node scripts/generate-cv-pdf.mjs",
+    "build:cl": "node scripts/generate-cover-letter-pdf.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

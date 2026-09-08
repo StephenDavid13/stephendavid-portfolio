@@ -72,6 +72,26 @@
     display: none !important;
   }
 
+  /* A dedicated /cv/<variant> route renders its own print root inside <main>
+     rather than relying on the layout-level default above. Where one is
+     present: drop the default root so only one CV prints, restore the <main>
+     wrapper that the rule above hides, and hide the route's screen-only
+     chrome. Guarded behind :has() so that on an engine without it the rules
+     are simply dropped and the default CV prints — never a blank page. */
+  body:has(main [data-cv-print-root]) > [data-cv-print-root] {
+    display: none !important;
+  }
+
+  body:has(main [data-cv-print-root]) > main {
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body:has(main [data-cv-print-root]) > main > *:not([data-cv-print-root]) {
+    display: none !important;
+  }
+
   /* Keep inline links styled inline; browsers will render them clickable in the PDF.
      Target :link / :visited explicitly so the print engine's default blue loses. */
   [data-cv-print-root] a,

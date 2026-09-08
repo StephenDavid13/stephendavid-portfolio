@@ -39,3 +39,6 @@ linkedin-covers/
 
 # Full-page site archive captures
 site-archive/
+
+# Cover letter PDFs (deliberately not deployed with the site)
+generated/

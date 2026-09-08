@@ -1,0 +1,20 @@
+{
+  "default": {
+    "file": "about.mdx",
+    "label": "CV",
+    "downloadLabel": "Download CV",
+    "blurb": "The general full-stack CV, the same document the About page produces.",
+    "pdf": "Stephen Lawrence David - CV.pdf",
+    "printPath": "/about",
+    "unlisted": false
+  },
+  "leadership": {
+    "file": "cv-leadership.mdx",
+    "label": "Leadership CV",
+    "downloadLabel": "Download leadership CV",
+    "blurb": "Same career, reordered around mentoring, team leadership, and the projects I spearheaded.",
+    "pdf": "Stephen Lawrence David - Leadership CV.pdf",
+    "printPath": "/cv/leadership",
+    "unlisted": true
+  }
+}

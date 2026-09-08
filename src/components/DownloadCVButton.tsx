@@ -1,15 +1,15 @@
 "use client";
 
 import { Button } from "@/components/ui/Button";
+import { CV_VARIANTS, DEFAULT_CV_VARIANT, cvPdfHref, type CVVariant } from "@/lib/cv";
 
 interface DownloadCVButtonProps {
   size?: "s" | "m" | "l";
   variant?: "primary" | "secondary" | "ghost";
   label?: string;
+  /** Which CV to hand over. Defaults to the general full-stack CV. */
+  cv?: CVVariant;
 }
-
-const CV_PATH = "/Stephen Lawrence David - CV.pdf";
-const CV_FILENAME = "Stephen Lawrence David - CV.pdf";
 
 const DocIcon = () => (
   <svg
@@ -32,12 +32,15 @@ const DocIcon = () => (
 export function DownloadCVButton({
   size = "m",
   variant = "primary",
-  label = "Download CV",
+  label,
+  cv = DEFAULT_CV_VARIANT,
 }: Readonly<DownloadCVButtonProps>) {
+  const config = CV_VARIANTS[cv];
+
   const handleDownload = () => {
     const link = document.createElement("a");
-    link.href = CV_PATH;
-    link.download = CV_FILENAME;
+    link.href = cvPdfHref(cv);
+    link.download = config.pdf;
     document.body.appendChild(link);
     link.click();
     link.remove();
@@ -45,7 +48,7 @@ export function DownloadCVButton({
 
   return (
     <Button onClick={handleDownload} size={size} variant={variant} iconLeft={<DocIcon />}>
-      {label}
+      {label ?? config.downloadLabel}
     </Button>
   );
 }

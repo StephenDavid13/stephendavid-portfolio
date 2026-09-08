@@ -1,0 +1,12 @@
+{
+  "default": {
+    "file": "cover-letter.mdx",
+    "label": "Cover Letter",
+    "pdf": "Stephen Lawrence David - Cover Letter.pdf"
+  },
+  "leadership": {
+    "file": "cover-letter-leadership.mdx",
+    "label": "Leadership Cover Letter",
+    "pdf": "Stephen Lawrence David - Leadership Cover Letter.pdf"
+  }
+}

@@ -16,7 +16,6 @@ export async function generateMetadata() {
 }
 
 const SECTIONS = [
-  { id: "summary", title: "Summary" },
   { id: "skills", title: "Skills" },
   { id: "experience", title: "Experience" },
   { id: "other-works", title: "Other works" },
@@ -142,18 +141,6 @@ export default function About() {
         <TableOfContents sections={SECTIONS} />
 
         <div className="min-w-0">
-          <section id="summary" className="pb-16">
-            <Reveal>
-              <h2 className="rule-b pb-3 text-2xl font-medium tracking-tight">Summary</h2>
-              <p
-                className="mt-6 max-w-[68ch] text-base leading-[1.75]"
-                style={{ color: "var(--fg-muted)" }}
-              >
-                {frontmatter.summary}
-              </p>
-            </Reveal>
-          </section>
-
           <section id="skills" className="pb-16">
             <Reveal>
               <h2 className="rule-b pb-3 text-2xl font-medium tracking-tight">Skills</h2>
